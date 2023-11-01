@@ -1,0 +1,24 @@
+.header__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+}
+
+.header__nav-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.header__nav-link_color{
+    background-color: #3DDC84;
+    color: #000;
+    border-radius: 3px;
+    padding: 8px 20px;
+}
