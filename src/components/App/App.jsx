@@ -7,20 +7,22 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
 function App() {
+  // const [loggedIn, setLoggedIn] = useState(false);
+
   return (
-    <div className="page">
+    <div className='page'>
       <Routes>
         <Route
-          path="/"
+          path='/'
           element={(
             <>
-              <Header />
+              <Header isLanding />
               <Main />
               <Footer />
             </>
           )}
         />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
   );

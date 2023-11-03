@@ -1,14 +1,26 @@
 .header {
-    background-color: #073042;
+    background-color: #202020;
     margin: 0;
     display: flex;
     min-height: 74px;
 }
 
+.header_landing{
+    background-color: #073042;
+}
+
 .header__container {
     display: flex;
+}
+
+.header__container_is_unlogged {
     justify-content: space-between;
     align-items: center;
+}
+
+.header__container_is_logged {
+    align-items: center;
+    column-gap: 45px;
 }
 
 .header__logo{
