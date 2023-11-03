@@ -29,9 +29,12 @@ export default function Navigation({ isLanding }) {
         <li className='nav-auth__list-item'>
           <NavLink
             to='/profile'
-            className={`nav-auth__accout-button ${isLanding
-              ? 'nav-auth__accout-button_place_landing'
-              : 'nav-auth__accout-button_place_movies'}`}
+            className={
+              ({ isActive }) => `nav-auth__accout-button ${isLanding
+                ? 'nav-auth__accout-button_place_landing'
+                : 'nav-auth__accout-button_place_movies'}
+              ${isActive ? 'nav-auth__accout-button_is_active' : ''}`
+            }
           >
             Аккаунт
           </NavLink>

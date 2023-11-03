@@ -19,6 +19,7 @@
 }
 
 .header__container_is_logged {
+    justify-content: start;
     align-items: center;
     column-gap: 45px;
 }
@@ -28,4 +29,9 @@
     height: 38px;
     width: 38px;
     object-fit: contain;
+    transition: .3s ease-in-out;
+}
+
+.header__logo_link:hover{
+    opacity: .7;
 }
