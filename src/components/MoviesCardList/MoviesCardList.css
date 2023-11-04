@@ -3,6 +3,11 @@
     padding-bottom: 10px;
 }
 
+.movies-elements_place_saved-movies {
+    flex-grow: 1;
+    padding-bottom: 100px;
+}
+
 .movies-elements__lists {
     max-width: 1140px;
     margin: 0 auto;

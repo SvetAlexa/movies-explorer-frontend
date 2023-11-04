@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import getHoursAndMinutes from '../../utils/utils';
 import './MoviesCard.css';
 
-export default function MoviesCard({ movie }) {
+export default function MoviesCard({ movie, isSavedMovies }) {
   const [isSaved, setIsSaved] = useState(false);
 
   function handleMovieSaveClick() {
@@ -16,7 +16,11 @@ export default function MoviesCard({ movie }) {
       </div>
       <div className='element__title-container'>
         <h2 className='element__title'>{movie.nameRU}</h2>
-        <button className={`element__save-button ${isSaved && 'element__save-button_is_active'}`} aria-label='Save' type='button' onClick={handleMovieSaveClick} />
+        {
+          isSavedMovies
+            ? <button className='element__delete-button' aria-label='Delete' type='button' />
+            : <button className={`element__save-button ${isSaved && 'element__save-button_is_active'}`} aria-label='Save' type='button' onClick={handleMovieSaveClick} />
+        }
       </div>
       <p className='element__duration'>{getHoursAndMinutes(movie.duration)}</p>
     </li>

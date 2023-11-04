@@ -1,7 +1,8 @@
 .optional-section {
-    min-height: 166px;
+    min-height: 140px;
     margin: 0 auto;
     padding-top: 49px;
+    padding-bottom: 80px;
     box-sizing: border-box;
 }
 

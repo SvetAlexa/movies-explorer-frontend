@@ -1,15 +1,16 @@
 import React from 'react';
+import { initialMovies } from '../../utils/movies';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
-import SearchResultsButton from '../SearchResultsButton/SearchResultsButton';
+import SavedDivider from '../SavedDivider/SavedDivider';
 import './Movies.css';
 
 export default function Movies() {
   return (
     <main className='main'>
       <SearchForm />
-      <MoviesCardList />
-      <SearchResultsButton />
+      <MoviesCardList movies={initialMovies} isSavedMovies={false} />
+      <SavedDivider isSavedMovies={false} />
     </main>
   );
 }

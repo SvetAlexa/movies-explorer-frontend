@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
@@ -39,7 +40,7 @@ function App() {
           element={(
             <>
               <Header isLanding={false} loggedIn />
-              <Movies />
+              <SavedMovies />
               <Footer />
             </>
           )}
