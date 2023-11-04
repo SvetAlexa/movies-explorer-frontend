@@ -1,0 +1,15 @@
+.profile {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__title {
+    margin: 0;
+    padding-top: 74px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

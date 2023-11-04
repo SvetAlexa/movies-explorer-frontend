@@ -1,0 +1,63 @@
+.element {
+    list-style: none;
+    max-width: 270px;
+    min-height: 217px;
+}
+
+.element__image {
+    background-color: #2F2F2F;
+    display: block;
+    width: 270px;
+    height: 151px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.element__title-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 13px;
+    border-bottom: solid 1px #424242;
+}
+
+.element__title {
+    margin: 0;
+    padding-top: 4px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    max-width: 226px;
+    height: 32px;
+    overflow: hidden;
+    white-space: pre-line;
+}
+
+.element__save-button {
+    background-color: initial;
+    background-image: url(../../images/save-button.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-position: center;
+}
+
+.element__save-button_is_active{
+    background-image: url(../../images/save-button-active.svg);
+}
+
+.element__duration {
+    margin: 0;
+    padding-top: 6px;
+    color: #8B8B8B;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

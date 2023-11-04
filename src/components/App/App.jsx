@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import SearchForm from '../SearchForm/SearchForm';
+import Movies from '../Movies/Movies';
+import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
@@ -28,9 +29,7 @@ function App() {
           element={(
             <>
               <Header isLanding={false} loggedIn />
-              <main>
-                <SearchForm />
-              </main>
+              <Movies />
               <Footer />
             </>
           )}
@@ -40,9 +39,7 @@ function App() {
           element={(
             <>
               <Header isLanding={false} loggedIn />
-              <main>
-                <SearchForm />
-              </main>
+              <Movies />
               <Footer />
             </>
           )}
@@ -51,7 +48,10 @@ function App() {
         <Route
           path='/profile'
           element={(
-            <Header isLanding={false} loggedIn />
+            <>
+              <Header isLanding={false} loggedIn />
+              <Profile />
+            </>
           )}
         />
         <Route path='*' element={<PageNotFound />} />

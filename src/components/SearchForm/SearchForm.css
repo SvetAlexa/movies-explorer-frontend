@@ -50,6 +50,7 @@
     content: '';
     position: absolute;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     top: 22%;
     right: -1px;
     height: 40px;
@@ -62,7 +63,6 @@
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 63px;
-    background-clip: padding-box;
     width: 100%;
     background-color: transparent;
     color: #FFF;

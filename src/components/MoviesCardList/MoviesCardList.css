@@ -1,0 +1,14 @@
+.movies-elements {
+    flex-grow: 1;
+}
+
+.movies-elements__lists {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 37px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 270px);
+}
