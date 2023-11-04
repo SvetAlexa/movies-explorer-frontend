@@ -3,6 +3,8 @@ import movies from '../../utils/movies';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
+// const movies = [];
+
 export default function MoviesCardList() {
   return (
     <section className='movies-elements page__container'>

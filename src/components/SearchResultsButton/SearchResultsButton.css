@@ -1,0 +1,22 @@
+.optional-section {
+    min-height: 166px;
+    margin: 0 auto;
+    padding-top: 49px;
+    box-sizing: border-box;
+}
+
+.optional-section__button {
+    color: #FFF;
+    text-align: center;
+    background-color: #2F2F2F;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+    height: 36px;
+    width: 320px;
+}
