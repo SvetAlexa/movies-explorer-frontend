@@ -16,7 +16,7 @@ export default function Login() {
         <AuthFormInput
           labelText='E-mail'
           type='email'
-          placeholder='pochta@yandex.ru'
+          placeholder='E-mail'
           name='email'
         />
         <AuthFormInput

@@ -5,7 +5,7 @@
     min-height: 74px;
 }
 
-.header_landing{
+.header_landing {
     background-color: #073042;
 }
 
@@ -24,14 +24,17 @@
     column-gap: 45px;
 }
 
-.header__logo{
+.header__logo {
     display: block;
     height: 38px;
     width: 38px;
     object-fit: contain;
+}
+
+.header__logo_link {
     transition: .3s ease-in-out;
 }
 
-.header__logo_link:hover{
+.header__logo_link:hover {
     opacity: .7;
 }

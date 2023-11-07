@@ -16,6 +16,7 @@
     font-weight: 400;
     line-height: normal;
     padding-bottom: 4px;
+    margin: 0;
 }
 
 .auth__input {

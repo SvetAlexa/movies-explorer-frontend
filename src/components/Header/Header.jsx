@@ -10,7 +10,7 @@ export default function Header({ isLanding, loggedIn }) {
     <header className={`header page__container ${isLanding ? 'header_landing' : ''}`}>
       <div className={`header__container page__section ${loggedIn ? 'header__container_is_logged' : 'header__container_is_unlogged'}`}>
         {isLanding ? <img className='header__logo' src={Logo} alt='логотип приложения' />
-          : <Link to='/'><img className='header__logo header__logo_link' src={Logo} alt='логотип приложения' /></Link>}
+          : <Link to='/' className='header__logo_link'><img className='header__logo' src={Logo} alt='логотип приложения' /></Link>}
         {loggedIn ? <Navigation isLanding={isLanding} /> : <NavAuth />}
       </div>
     </header>

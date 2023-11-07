@@ -18,6 +18,11 @@
     font-weight: 500;
     line-height: normal;
     cursor: pointer;
+    transition: .3s ease-in-out;
     height: 36px;
     width: 320px;
+}
+
+.optional-section__button:hover{
+    opacity: .8;
 }

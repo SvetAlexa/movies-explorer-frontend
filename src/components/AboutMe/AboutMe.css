@@ -57,6 +57,12 @@
     font-weight: 500;
     line-height: normal;
     justify-self: end;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.about-me__link:hover{
+    opacity: .7;
 }
 
 .about-me__avatar{
