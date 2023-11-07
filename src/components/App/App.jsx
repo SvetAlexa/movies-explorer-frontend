@@ -5,6 +5,8 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
@@ -19,7 +21,7 @@ function App() {
           path='/'
           element={(
             <>
-              <Header isLanding loggedIn />
+              <Header isLanding loggedIn={false} />
               <Main />
               <Footer />
             </>
@@ -45,7 +47,8 @@ function App() {
             </>
           )}
         />
-        <Route path='*' element={<PageNotFound />} />
+        <Route path='/signup' element={<Register />} />
+        <Route path='/signin' element={<Login />} />
         <Route
           path='/profile'
           element={(

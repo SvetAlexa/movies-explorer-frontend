@@ -13,3 +13,88 @@
     font-weight: 500;
     line-height: normal;
 }
+
+.profile__form {
+    padding-top: 112px;
+    max-width: 410px;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+.profile__form-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding-bottom: 210px;
+}
+
+.profile__form-item {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 140px auto;
+    border-bottom: 1px solid #424242;
+    padding-bottom: 5px;
+}
+
+.profile__form-item:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.profile__form-label {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.profile__form-input {
+    background-color: inherit;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    text-align: right;
+    color: #FFF;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    outline: none;
+}
+
+.profile__form-input::placeholder {
+    color: #8B8B8B;
+}
+
+.profile__form-button {
+    display: block;
+    padding: 0;
+    border: none;
+    background-color: inherit;
+    color: #FFF;
+    text-align: center;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.profile__exit-button {
+    display: block;
+    padding: 0;
+    border: none;
+    background-color: inherit;
+    color: #EE3465;
+    text-align: center;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
