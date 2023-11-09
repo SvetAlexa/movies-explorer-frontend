@@ -5,7 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import SavedDivider from '../SavedDivider/SavedDivider';
 import './Movies.css';
 
-// const movies = [];
+// const initialMovies = [];
 
 export default function Movies() {
   return (

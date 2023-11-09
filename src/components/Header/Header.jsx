@@ -7,7 +7,7 @@ import './Header.css';
 
 export default function Header({ isLanding, loggedIn }) {
   return (
-    <header className={`header page__container ${isLanding ? 'header_landing' : ''}`}>
+    <header className={`header ${isLanding ? 'header_landing' : ''}`}>
       <div className={`header__container page__section ${loggedIn ? 'header__container_is_logged' : 'header__container_is_unlogged'}`}>
         {isLanding ? <img className='header__logo' src={Logo} alt='логотип приложения' />
           : <Link to='/' className='header__logo_link'><img className='header__logo' src={Logo} alt='логотип приложения' /></Link>}

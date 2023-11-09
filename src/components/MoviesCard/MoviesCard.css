@@ -6,9 +6,9 @@
 
 .element__image {
     background-color: #2F2F2F;
-    display: block;
-    width: 270px;
+    width: 271px;
     height: 151px;
+    display: block;
     object-fit: cover;
     object-position: center;
 }
@@ -83,4 +83,33 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+@media screen and (max-width: 880px) {
+    .element {
+        max-width: 339px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .element__image {
+        width: 339px;
+        height: 190px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .element__image {
+        width: 300px;
+        height: 168px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .element__delete-button {
+       opacity: 1;
+    }
+    .element__delete-button:hover{
+        opacity: .7;
+    }
 }

@@ -4,6 +4,7 @@
 
 .page {
   margin: 0 auto;
+  position: relative;
   min-width: 320px;
   color: #fff;
   font-family: 'Inter', Arial, sans-serif;
@@ -12,15 +13,9 @@
   height: 100vh;
 }
 
-.page__container {
-  padding-left: 70px;
-  padding-right: 70px;
-}
-
 .page__section {
   margin: 0 auto;
-  max-width: 1140px;
-  width: 100%;
+  max-width: 1140px; 
 }
 
 .page__section-title {
@@ -32,4 +27,21 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.88px;
+}
+
+
+
+@media screen and (max-width: 620px) {
+  .page__section-title {
+      padding-top: 70px;
+      padding-bottom: 29px;
+      font-size: 18px;
+      letter-spacing: -0.72px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .page__section-title_place_techs {
+    border-bottom: 1px solid #000;
+  }
 }

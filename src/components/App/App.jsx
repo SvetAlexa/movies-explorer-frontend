@@ -21,7 +21,7 @@ function App() {
           path='/'
           element={(
             <>
-              <Header isLanding loggedIn={false} />
+              <Header isLanding loggedIn />
               <Main />
               <Footer />
             </>

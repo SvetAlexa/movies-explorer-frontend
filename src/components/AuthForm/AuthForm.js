@@ -7,7 +7,7 @@ export default function AuthForm({
   title, buttonText, redirectQuestion, linkPath, linkTitle, children,
 }) {
   return (
-    <section className='auth page__container'>
+    <section className='auth'>
       <Link to='/' className='auth__link'>
         <img className='auth__logo' src={Logo} alt='логотип приложения' />
       </Link>

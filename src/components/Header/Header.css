@@ -11,6 +11,7 @@
 
 .header__container {
     display: flex;
+    width: calc(100% - 70px * 2);
 }
 
 .header__container_is_unlogged {
@@ -37,4 +38,22 @@
 
 .header__logo_link:hover {
     opacity: .7;
+}
+
+@media screen and (max-width: 880px) {
+    .header__container {
+        width: calc(100% - 30px * 2);
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .header__container {
+        width: calc(100% - 14px * 2);
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .header__container_is_logged {
+        justify-content: space-between;
+    }
 }

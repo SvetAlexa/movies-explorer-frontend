@@ -4,7 +4,7 @@ import './SearchForm.css';
 
 export default function SearchForm() {
   return (
-    <section className='search-form page__container'>
+    <section className='search-form'>
       <div className='search-form__border'>
         <div className='search-form__container page__section'>
           <form className='search-form__form'>

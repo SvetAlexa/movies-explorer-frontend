@@ -2,6 +2,7 @@
     background-color: #202020;
     min-height: 100vh;
     padding-top: 245px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,4 +35,38 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+@media screen and (max-width: 880px) {
+    .page-not-found {
+        min-height: 1024px;
+        padding-top: 408px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .page-not-found {
+        min-height: 100vh;
+        padding-top: 329px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .page-not-found__code {
+        font-size: 80px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .page-not-found__text {
+        font-size: 12px;
+        padding-top: 10px;
+        padding-bottom: 284px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .page-not-found__button {
+        font-size: 12px;
+    }
 }

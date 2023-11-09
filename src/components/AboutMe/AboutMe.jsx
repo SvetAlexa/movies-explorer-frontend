@@ -11,7 +11,7 @@ export default function AboutMe() {
           <div className='about-me__resume'>
             <p className='about-me__name'>Виталий</p>
             <p className='about-me__subtitle'>Фронтенд-разработчик, 30 лет</p>
-            <p className='about-me_text'>
+            <p className='about-me__text'>
               Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена
               и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить.
               С 2015 года работал в компании «СКБ Контур».

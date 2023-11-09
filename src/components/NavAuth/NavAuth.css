@@ -17,13 +17,32 @@
     transition: .3s ease-in-out;
 }
 
-.nav__link_color{
+.nav__link_color {
     background-color: #3DDC84;
     color: #000;
     border-radius: 3px;
     padding: 8px 20px;
 }
 
-.nav__link:hover{
+.nav__link:hover {
     opacity: .7;
+}
+
+@media screen and (max-width: 620px) {
+    .nav__list {
+        column-gap: 14px;
+        padding-bottom: 4px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .nav__link {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .nav__link_color {
+        padding: 7px 12px;
+    }
 }

@@ -3,7 +3,7 @@ import './Footer.css';
 
 export default function Footer() {
   return (
-    <footer className='footer page__container'>
+    <footer className='footer'>
       <div className='footer__container page__section'>
         <p className='footer__text'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
         <div className='footer__info'>

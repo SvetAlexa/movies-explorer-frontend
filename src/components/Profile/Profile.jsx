@@ -4,7 +4,7 @@ import './Profile.css';
 export default function Profile() {
   return (
     <main className='main'>
-      <section className='profile page__container'>
+      <section className='profile'>
         <p className='profile__title'>Привет, Виталий!</p>
         <form className='profile__form'>
           <ul className='profile__form-list'>

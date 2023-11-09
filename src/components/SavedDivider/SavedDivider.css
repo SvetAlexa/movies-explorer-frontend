@@ -23,6 +23,12 @@
     width: 320px;
 }
 
-.optional-section__button:hover{
+.optional-section__button:hover {
     opacity: .8;
+}
+
+@media screen and (max-width: 620px) {
+    .optional-section__button {
+        width: 240px;
+    }
 }

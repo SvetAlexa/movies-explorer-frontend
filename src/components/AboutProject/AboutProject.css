@@ -4,9 +4,10 @@
 
 .about-project__container {
     min-height: 608px;
+    width: calc(100% - 70px * 2);
 }
 
-.about-project__title{
+.about-project__title {
     padding-top: 110px;
 }
 
@@ -68,7 +69,7 @@
     background-color: #303030;
 }
 
-.schema__time_color{
+.schema__time_color {
     color: #000;
     background-color: #3DDC84;
 }
@@ -82,4 +83,112 @@
     font-style: normal;
     font-weight: 500;
     line-height: 17px;
+}
+
+@media screen and (max-width: 880px) {
+    .about-project__container {
+        width: calc(100% - 50px * 2);
+        min-height: 585px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .about-project__container {
+        width: calc(100% - 18px * 2);
+        min-height: 641px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .about-project__title {
+        padding-top: 90px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .about-project__articles {
+        column-gap: 30px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .about-project__articles {
+        grid-template-columns: repeat(1, 1fr);
+        padding-top: 61px;
+        row-gap: 57px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .article {
+        row-gap: 22px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .article {
+        row-gap: 17px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .article__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .article__text {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .article__text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .schema {
+        padding-top: 94px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .schema {
+        padding-top: 60px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .schema__items {
+        grid-template-columns: 140px auto;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .schema__items {
+        grid-template-columns: 100px auto;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .schema__time {
+        font-size: 11px;
+        padding: 11px 14px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .schema__text {
+        font-size: 11px;
+        font-weight: 400;
+        line-height: normal;
+        padding-top: 10px;
+    }
 }
