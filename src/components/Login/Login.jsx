@@ -23,6 +23,7 @@ export default function Login() {
           labelText='Пароль'
           type='password'
           name='password'
+          placeholder='Пароль'
           minLength={6}
           maxLength={30}
         />
