@@ -74,6 +74,11 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    transition: .3s ease-in-out;
+}
+
+.nav-menu__link:hover {
+    opacity: .7;
 }
 
 .nav-menu__link_is_active {
@@ -102,6 +107,10 @@
     transition: .3s ease-in-out;
 }
 
+.nav-menu__accout-button:hover{
+    opacity: .7;
+}
+
 .nav-menu__accout-button::after {
     content: '';
     position: absolute;
@@ -123,14 +132,14 @@
 
 @media screen and (max-width: 620px) {
     .nav-menu {
-     height: 780px;
+        height: 780px;
     }
 }
 
 @media screen and (max-width: 620px) {
     .nav-menu__container {
         width: 100%;
-        padding: 144px 10px 94px 10px;
+        padding: 144px 10px 46px 10px;
     }
 }
 
