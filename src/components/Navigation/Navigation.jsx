@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import NavMenuBurger from '../NavMenuBurger/NavMenuBurger';
 import './Navigation.css';
 
-export default function Navigation({ isLanding }) {
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-
-  function handleBurgerMenuClick() {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
-  }
-
+export default function Navigation({
+  isLanding, isBurgerMenuOpen, onMenuButtonCloseClick, onMenuButtonOpenClick,
+}) {
   return (
     <>
       <nav className='nav-auth'>
@@ -50,13 +46,16 @@ export default function Navigation({ isLanding }) {
         </ul>
       </nav>
       <div className={`nav-burger ${isBurgerMenuOpen ? 'nav-burger_is_hidden' : ''}`}>
-        <button className='nav-burger__button' type='button' onClick={handleBurgerMenuClick}>
+        <button className='nav-burger__button' type='button' onClick={onMenuButtonOpenClick}>
           <span className='nav-burger__line' />
           <span className='nav-burger__line' />
           <span className='nav-burger__line' />
         </button>
       </div>
-      <NavMenuBurger onMenuClick={handleBurgerMenuClick} isBurgerMenuOpen={isBurgerMenuOpen} />
+      <NavMenuBurger
+        onMenuButtonCloseClick={onMenuButtonCloseClick}
+        isBurgerMenuOpen={isBurgerMenuOpen}
+      />
     </>
   );
 }

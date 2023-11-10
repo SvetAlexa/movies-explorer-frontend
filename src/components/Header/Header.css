@@ -32,11 +32,11 @@
     object-fit: contain;
 }
 
-.header__logo_link {
+.header__logo-link {
     transition: .3s ease-in-out;
 }
 
-.header__logo_link:hover {
+.header__logo-link:hover {
     opacity: .7;
 }
 

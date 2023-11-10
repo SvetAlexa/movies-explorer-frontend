@@ -29,7 +29,10 @@
   letter-spacing: -0.88px;
 }
 
-
+.page_disable-scroll{
+  overflow: hidden;
+  height: 100vh;
+}
 
 @media screen and (max-width: 620px) {
   .page__section-title {

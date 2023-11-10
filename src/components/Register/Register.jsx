@@ -33,6 +33,8 @@ export default function Register() {
           placeholder='Пароль'
           name='password'
           errorText='Что-то пошло не так...'
+          minLength={6}
+          maxLength={30}
         />
       </AuthForm>
     </main>

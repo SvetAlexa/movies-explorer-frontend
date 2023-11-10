@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -12,7 +12,18 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import './App.css';
 
 function App() {
-  // const [loggedIn, setLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  function handleBurgerMenuOpen() {
+    setIsBurgerMenuOpen(true);
+    document.querySelector('.page').classList.add('page_disable-scroll');
+  }
+
+  function handleBurgerMenuClose() {
+    setIsBurgerMenuOpen(false);
+    document.querySelector('.page').classList.remove('page_disable-scroll');
+  }
 
   return (
     <div className='page'>
@@ -21,7 +32,13 @@ function App() {
           path='/'
           element={(
             <>
-              <Header isLanding loggedIn />
+              <Header
+                isLanding
+                isLoggedIn={false}
+                isBurgerMenuOpen={isBurgerMenuOpen}
+                onMenuButtonCloseClick={handleBurgerMenuClose}
+                onMenuButtonOpenClick={handleBurgerMenuOpen}
+              />
               <Main />
               <Footer />
             </>
@@ -31,7 +48,13 @@ function App() {
           path='/movies'
           element={(
             <>
-              <Header isLanding={false} loggedIn />
+              <Header
+                isLanding={false}
+                isLoggedIn
+                isBurgerMenuOpen={isBurgerMenuOpen}
+                onMenuButtonCloseClick={handleBurgerMenuClose}
+                onMenuButtonOpenClick={handleBurgerMenuOpen}
+              />
               <Movies />
               <Footer />
             </>
@@ -41,7 +64,13 @@ function App() {
           path='/saved-movies'
           element={(
             <>
-              <Header isLanding={false} loggedIn />
+              <Header
+                isLanding={false}
+                isLoggedIn
+                isBurgerMenuOpen={isBurgerMenuOpen}
+                onMenuButtonCloseClick={handleBurgerMenuClose}
+                onMenuButtonOpenClick={handleBurgerMenuOpen}
+              />
               <SavedMovies />
               <Footer />
             </>
@@ -53,7 +82,13 @@ function App() {
           path='/profile'
           element={(
             <>
-              <Header isLanding={false} loggedIn />
+              <Header
+                isLanding={false}
+                isLoggedIn
+                isBurgerMenuOpen={isBurgerMenuOpen}
+                onMenuButtonCloseClick={handleBurgerMenuClose}
+                onMenuButtonOpenClick={handleBurgerMenuOpen}
+              />
               <Profile />
             </>
           )}

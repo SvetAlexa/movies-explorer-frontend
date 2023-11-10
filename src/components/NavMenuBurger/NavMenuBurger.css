@@ -78,6 +78,7 @@
 
 .nav-menu__link_is_active {
     border-bottom: 2px solid #FFF;
+    pointer-events: none;
 }
 
 .nav-menu__accout-button {
@@ -118,4 +119,37 @@
 .nav-menu__accout-button_is_active {
     outline: 2px solid #F5F5F5;
     pointer-events: none;
+}
+
+@media screen and (max-width: 620px) {
+    .nav-menu {
+     height: 780px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .nav-menu__container {
+        width: 100%;
+        padding: 144px 10px 94px 10px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .nav-menu__close-button {
+        top: 13px;
+        right: 16px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .nav-menu__list {
+        row-gap: 26px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .nav-menu__link_is_active {
+        padding-bottom: 6px;
+    }
 }

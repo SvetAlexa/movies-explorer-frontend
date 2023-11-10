@@ -23,6 +23,8 @@ export default function Login() {
           labelText='Пароль'
           type='password'
           name='password'
+          minLength={6}
+          maxLength={30}
         />
       </AuthForm>
     </main>

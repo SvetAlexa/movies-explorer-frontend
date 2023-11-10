@@ -2,11 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavMenuBurger.css';
 
-export default function NavMenuBurger({ onMenuClick, isBurgerMenuOpen }) {
+export default function NavMenuBurger({ onMenuButtonCloseClick, isBurgerMenuOpen }) {
   return (
     <div className={`nav-menu ${isBurgerMenuOpen ? 'nav-menu_is_opened' : ''}`}>
       <div className='nav-menu__container'>
-        <button className='nav-menu__close-button' type='button' aria-label='Close' onClick={onMenuClick} />
+        <button className='nav-menu__close-button' type='button' aria-label='Close' onClick={onMenuButtonCloseClick} />
         <nav className='nav-menu__links'>
           <ul className='nav-menu__list'>
             <li className='nav-menu__item'>
