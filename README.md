@@ -6,4 +6,8 @@
 
 **Макет проекта** - dark-1
 
+**Ссылка на домен фронтенда** https://movies-diploma.nomoredomainsrocks.ru/
+
+**Ссылка на домен сервера** https://api.movies-diploma.nomoredomainsrocks.ru/
+
 **Ссылка на репозиторий с бэкенд частью** https://github.com/SvetAlexa/movies-explorer-api
