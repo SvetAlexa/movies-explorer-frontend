@@ -1,5 +1,6 @@
 .movies-elements {
     flex-grow: 1;
+    padding-top: 2px;
     padding-bottom: 10px;
     width: calc(100% - 70px * 2);
     margin: 0 auto;

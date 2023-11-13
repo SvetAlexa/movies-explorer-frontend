@@ -15,6 +15,7 @@ export default function NavMenuBurger({ onMenuButtonCloseClick, isBurgerMenuOpen
                 className={
                   ({ isActive }) => `nav-menu__link ${isActive ? 'nav-menu__link_is_active' : ''}`
                 }
+                onClick={onMenuButtonCloseClick}
               >
                 Главная
               </NavLink>
@@ -25,6 +26,7 @@ export default function NavMenuBurger({ onMenuButtonCloseClick, isBurgerMenuOpen
                 className={
                   ({ isActive }) => `nav-menu__link ${isActive ? 'nav-menu__link_is_active' : ''}`
                 }
+                onClick={onMenuButtonCloseClick}
               >
                 Фильмы
               </NavLink>
@@ -35,6 +37,7 @@ export default function NavMenuBurger({ onMenuButtonCloseClick, isBurgerMenuOpen
                 className={
                   ({ isActive }) => `nav-menu__link ${isActive ? 'nav-menu__link_is_active' : ''}`
                 }
+                onClick={onMenuButtonCloseClick}
               >
                 Сохранённые фильмы
               </NavLink>
@@ -47,6 +50,7 @@ export default function NavMenuBurger({ onMenuButtonCloseClick, isBurgerMenuOpen
             ({ isActive }) => `nav-menu__accout-button
               ${isActive ? 'nav-menu__accout-button_is_active' : ''}`
           }
+          onClick={onMenuButtonCloseClick}
         >
           Аккаунт
         </NavLink>

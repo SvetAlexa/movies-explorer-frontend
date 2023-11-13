@@ -9,9 +9,9 @@ export default function FilterCheckbox() {
   }
 
   return (
-    <form className='checkbox'>
+    <div className='checkbox'>
       <input className='checkbox__switch checkbox__input' type='checkbox' checked={checked} onChange={handleCheckbox} />
       <span className='checkbox__text'>Короткометражки</span>
-    </form>
+    </div>
   );
 }

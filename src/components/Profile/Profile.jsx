@@ -5,16 +5,16 @@ export default function Profile() {
   return (
     <main className='main'>
       <section className='profile'>
-        <p className='profile__title'>Привет, Виталий!</p>
+        <h1 className='profile__title'>Привет, Виталий!</h1>
         <form className='profile__form'>
           <ul className='profile__form-list'>
             <li className='profile__form-item'>
-              <p className='profile__form-label'>Имя</p>
-              <input className='profile__form-input' type='text' name='name' placeholder='Имя' minLength={2} maxLength={30} required />
+              <label className='profile__form-label' htmlFor='name'>Имя</label>
+              <input className='profile__form-input' type='text' name='name' id='name' placeholder='Имя' minLength={2} maxLength={30} required />
             </li>
             <li className='profile__form-item'>
-              <p className='profile__form-label'>E-mail</p>
-              <input className='profile__form-input' type='email' name='email' placeholder='E-mail' required />
+              <label className='profile__form-label' htmlFor='email'>E-mail</label>
+              <input className='profile__form-input' type='email' name='email' id='email' placeholder='E-mail' required />
             </li>
           </ul>
           <button className='profile__form-button' type='submit'>Редактировать</button>

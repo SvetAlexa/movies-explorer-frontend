@@ -6,13 +6,13 @@ export default function SearchForm() {
   return (
     <section className='search-form'>
       <div className='search-form__border'>
-        <div className='search-form__container page__section'>
-          <form className='search-form__form'>
+        <form className='search-form__form'>
+          <div className='search-form__form-container'>
             <input className='search-form__input' name='movie' required placeholder='Фильм' />
             <button className='search-form__button' type='submit'>Найти</button>
-          </form>
+          </div>
           <FilterCheckbox />
-        </div>
+        </form>
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ export default function AboutMe() {
         <h2 className='about-me__title page__section-title'>Студент</h2>
         <article className='about-me__article'>
           <div className='about-me__resume'>
-            <p className='about-me__name'>Виталий</p>
+            <h2 className='about-me__name'>Виталий</h2>
             <p className='about-me__subtitle'>Фронтенд-разработчик, 30 лет</p>
             <p className='about-me__text'>
               Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена

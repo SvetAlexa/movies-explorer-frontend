@@ -6,7 +6,7 @@ export default function AuthFormInput({
 }) {
   return (
     <li className='auth__input-item'>
-      <p className='auth__input-label'>{labelText}</p>
+      <label className='auth__input-label'>{labelText}</label>
       <input className='auth__input' type={type} name={name} placeholder={placeholder} minLength={minLength} maxLength={maxLength} required />
       <span className='error'>{errorText}</span>
     </li>

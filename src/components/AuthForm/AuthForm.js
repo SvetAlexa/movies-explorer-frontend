@@ -11,7 +11,7 @@ export default function AuthForm({
       <Link to='/' className='auth__link'>
         <img className='auth__logo' src={Logo} alt='логотип приложения' />
       </Link>
-      <h2 className='auth__title'>{title}</h2>
+      <h1 className='auth__title'>{title}</h1>
       <form className='auth__form'>
         <ul className='auth__form-list'>
           {children}
