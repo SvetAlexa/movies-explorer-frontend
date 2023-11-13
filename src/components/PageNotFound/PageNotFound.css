@@ -35,6 +35,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    transition: .3s ease-in-out;
+}
+
+.page-not-found__button:hover{
+    opacity: .7;
 }
 
 @media screen and (max-width: 880px) {

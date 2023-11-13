@@ -6,6 +6,15 @@
     position: relative;
 }
 
+.checkbox__switch{
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+
+.checkbox__switch:hover{
+    opacity: .7;
+}
+
 .checkbox__input {
     display: block;
     width: 36px;
@@ -13,7 +22,7 @@
     appearance: none;
     background-color: #343434;
     border-radius: 10px;
-    cursor: pointer;
+    
 }
 
 .checkbox__input::after {
