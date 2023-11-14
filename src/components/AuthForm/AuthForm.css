@@ -12,6 +12,7 @@
 
 .auth__link {
     transition: .3s ease-in-out;
+    max-width: 38px;
 }
 
 .auth__link:hover {

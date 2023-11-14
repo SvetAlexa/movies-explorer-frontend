@@ -11,10 +11,12 @@ export default function Profile() {
             <li className='profile__form-item'>
               <label className='profile__form-label' htmlFor='name'>Имя</label>
               <input className='profile__form-input' type='text' name='name' id='name' placeholder='Имя' minLength={2} maxLength={30} required />
+              <span className='profile__form-error' />
             </li>
             <li className='profile__form-item'>
               <label className='profile__form-label' htmlFor='email'>E-mail</label>
               <input className='profile__form-input' type='email' name='email' id='email' placeholder='E-mail' required />
+              <span className='profile__form-error' />
             </li>
           </ul>
           <button className='profile__form-button' type='submit'>Редактировать</button>

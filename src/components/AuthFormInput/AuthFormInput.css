@@ -39,7 +39,7 @@
 }
 
 .auth__input:focus{
-    border-bottom: 1px solid #4285F4;;
+    border-bottom: 1px solid #4285F4;
 }
 
 .error {
