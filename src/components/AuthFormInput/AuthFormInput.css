@@ -1,0 +1,54 @@
+.auth__input-item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 7px;
+}
+
+.auth__input-item:last-of-type {
+    padding-bottom: 0;
+}
+
+.auth__input-label {
+    color: #8B8B8B;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 4px;
+    margin: 0;
+}
+
+.auth__input {
+    background-color: inherit;
+    color: #fff;
+    padding: 0;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #424242;
+    outline: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.auth__input::placeholder {
+    color: #8B8B8B;
+}
+
+.auth__input:focus{
+    border-bottom: 1px solid #4285F4;
+}
+
+.error {
+    display: block;
+    color: #EE3465;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    min-height: 12px;
+    padding-top: 6px;
+}
