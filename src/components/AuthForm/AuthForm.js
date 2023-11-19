@@ -5,7 +5,8 @@ import './AuthForm.css';
 
 export default function AuthForm({
   title,
-  buttonText, redirectQuestion, linkPath, linkTitle, children, onSubmit, isResponseRegister,
+  buttonText,
+  redirectQuestion, linkPath, linkTitle, isValid, children, onSubmit, isResponse,
 }) {
   return (
     <section className='auth'>
@@ -19,8 +20,8 @@ export default function AuthForm({
         </ul>
         {/* <span className='auth__error'>При авторизации произошла ошибка.
         Токен не передан или передан не в том формате.</span> */}
-        <span className='auth__error'>{isResponseRegister}</span>
-        <button className='auth__button' type='submit'>{buttonText}</button>
+        <span className='auth__error'>{isResponse}</span>
+        <button className={`auth__button ${!isValid ? 'auth__button_is_valid' : ''}`} type='submit' disabled={!isValid}>{buttonText}</button>
       </form>
       <div className='auth__redirect-container'>
         <p className='auth__redirect-question'>{redirectQuestion}</p>

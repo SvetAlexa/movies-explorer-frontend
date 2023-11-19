@@ -4,42 +4,92 @@ import {
 } from '../utils/constants';
 
 export default function useFormValidator() {
-  const [values, setValues] = useState('');
-  const [errors, setErrors] = useState('');
-  const [isValid, setIsValid] = useState(false);
+  const [emailValue, setEmailValue] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [nameValue, setNameValue] = useState('');
+  const [isValidName, setIsValidName] = useState(true);
+  const [passwordValue, setPasswordValue] = useState('');
+  const [isValidPassword, setIsValidPassword] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [values, setValues] = useState({});
 
-  function handleInputChange(evt) {
-    const { value, name } = evt.target;
-    setValues({ ...values, [name]: value });
+  function handleEmailInputChange(evt) {
+    const inputValue = evt.target.value;
     const inputName = evt.target.name;
-    if (inputName === 'email') {
-      const regexEmail = new RegExp(EMAIL_REGEX);
-      if (value === '') {
-        return setErrors({ ...errors, [name]: INVALID_INPUT });
-      }
-      if (!regexEmail.test(evt.target.value)) {
-        return setErrors({ ...errors, [name]: INVALID_EMAIL });
-      }
-      return setErrors({ ...errors, [name]: '' });
+    setEmailValue(inputValue);
+    const regexEmail = new RegExp(EMAIL_REGEX);
+    if (inputValue === '') {
+      setIsValidEmail(false);
+      return setErrors({ ...errors, [inputName]: INVALID_INPUT });
     }
-    if (inputName === 'name') {
-      const regexName = new RegExp(NAME_REGEX);
-      if (value === '') {
-        return setErrors({ ...errors, [name]: INVALID_INPUT });
-      }
-      if (value.length < 2) {
-        return setErrors({ ...errors, [name]: INVALID_NAME_LENGTH });
-      }
-      if (!regexName.test(evt.target.value)) {
-        return setErrors({ ...errors, [name]: INVALID_NAME });
-      }
-      return setErrors({ ...errors, [name]: '' });
+    if (!regexEmail.test(inputValue)) {
+      setIsValidEmail(false);
+      return setErrors({ ...errors, [inputName]: INVALID_EMAIL });
     }
-    setErrors({ ...errors, [name]: evt.target.validationMessage });
-    setIsValid(evt.target.closest('form').checkValidity());
+    setIsValidEmail(true);
+    setErrors({ ...errors, [inputName]: '' });
+    setValues({ ...values, [inputName]: inputValue });
   }
 
+  function handleNameInputChange(evt) {
+    const inputValue = evt.target.value;
+    const inputName = evt.target.name;
+    setNameValue(inputValue);
+    const regexName = new RegExp(NAME_REGEX);
+    if (inputValue === '') {
+      setIsValidName(false);
+      return setErrors({ ...errors, [inputName]: INVALID_INPUT });
+    }
+    if (inputValue.length < 2) {
+      setIsValidName(false);
+      return setErrors({ ...errors, [inputName]: INVALID_NAME_LENGTH });
+    }
+    if (!regexName.test(evt.target.value)) {
+      setIsValidName(false);
+      return setErrors({ ...errors, [inputName]: INVALID_NAME });
+    }
+    setIsValidName(true);
+    setErrors({ ...errors, [inputName]: '' });
+    setValues({ ...values, [inputName]: inputValue });
+  }
+
+  function handlePasswordInputChange(evt) {
+    const inputValue = evt.target.value;
+    const inputName = evt.target.name;
+    setPasswordValue(inputValue);
+    if (inputValue === '') {
+      setIsValidPassword(false);
+      return setErrors({ ...errors, [inputName]: INVALID_INPUT });
+    }
+    if (inputValue.length < 6) {
+      setIsValidPassword(false);
+      return setErrors({ ...errors, [inputName]: evt.target.validationMessage });
+    }
+    setIsValidPassword(true);
+    setErrors({ ...errors, [inputName]: '' });
+    setValues({ ...values, [inputName]: inputValue });
+  }
+
+  const formProfileValidityStatus = (isValidEmail && isValidName);
+
+  const formLoginValidityStatus = (isValidEmail && isValidPassword);
+
+  const formRegisterValidityStatus = (isValidEmail && isValidName && isValidPassword);
+
   return ({
-    values, errors, setErrors, handleInputChange, setValues, isValid, setIsValid,
+    values,
+    setValues,
+    formProfileValidityStatus,
+    formLoginValidityStatus,
+    formRegisterValidityStatus,
+    emailValue,
+    nameValue,
+    passwordValue,
+    setEmailValue,
+    setNameValue,
+    errors,
+    handleEmailInputChange,
+    handleNameInputChange,
+    handlePasswordInputChange,
   });
 }
