@@ -1,10 +1,12 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable import/prefer-default-export */
+// const BASE_URL = 'https://api.movies-diploma.nomoredomainsrocks.ru';
+const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+const MOVIE_IMAGE_URL = 'https://api.nomoreparties.co/';
+
 const EMAIL_REGEX = '^([A-z0-9_.-]{1,}@[A-z0-9_.-]{1,}[.][A-z]{2,})$';
 const NAME_REGEX = '^[A-Za-zА-Яа-яЁё -]+$';
-
-// export const BASE_URL = 'https://api.movies-diploma.nomoredomainsrocks.ru';
-export const BASE_URL = 'http://127.0.0.1:3000';
 
 const BAD_REQUEST_CODE = '400';
 const UNAUTHORIZED_CODE = '401';
@@ -23,6 +25,9 @@ const ERROR_SERVER_PROFILE = 'При обновлении профиля про�
 const OK_SERVER_PROFILE = 'Данные профиля успешно изменены!';
 
 export {
+  BASE_URL,
+  BASE_MOVIES_URL,
+  MOVIE_IMAGE_URL,
   EMAIL_REGEX,
   NAME_REGEX,
   BAD_REQUEST_CODE,

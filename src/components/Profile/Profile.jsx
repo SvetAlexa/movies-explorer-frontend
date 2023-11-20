@@ -51,7 +51,7 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
   useEffect(() => {
     setEmailValue(currentUser.email);
     setNameValue(currentUser.name);
-  }, [currentUser]);
+  }, [currentUser, setEmailValue, setNameValue]);
 
   useEffect(() => {
     document.querySelector('.profile__form-input').focus();
@@ -60,7 +60,6 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
   useEffect(() => {
     setIsSubmitButtonDisable(formProfileValidityStatus
       && (nameValue !== currentUser.name || emailValue !== currentUser.email));
-    console.log(isSubmitButtonDisable);
   }, [nameValue, emailValue]);
 
   function handleLogout(evt) {

@@ -4,6 +4,10 @@
     min-height: 217px;
 }
 
+.element:hover .element__delete-button {
+    opacity: 1;
+}
+
 .element__image {
     background-color: #2F2F2F;
     width: 271px;
@@ -48,7 +52,7 @@
     transition: .3s ease-in-out;
 }
 
-.element__save-button:hover{
+.element__save-button:hover {
     opacity: .7;
 }
 
@@ -69,10 +73,6 @@
     cursor: pointer;
     opacity: 0;
     transition: .3s ease-in-out;
-}
-
-.element__delete-button:hover{
-    opacity: 1;
 }
 
 .element__duration {
@@ -107,9 +107,10 @@
 
 @media screen and (max-width: 620px) {
     .element__delete-button {
-       opacity: 1;
+        opacity: 1;
     }
-    .element__delete-button:hover{
+
+    .element__delete-button:hover {
         opacity: .7;
     }
 }
