@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import SavedDivider from '../SavedDivider/SavedDivider';
@@ -8,6 +9,7 @@ export default function MoviesCardList({
   movies, isSavedMovies, isSearchError, searchErrorMessage,
 }) {
   const [moviesQuantity, setMoviesQuantity] = useState(0);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   function getMoviesDisplayQuantity() {
     const display = window.innerWidth;
@@ -30,11 +32,20 @@ export default function MoviesCardList({
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      window.addEventListener('resize', getMoviesDisplayQuantity);
-    }, TIMER);
-    return window.removeEventListener('resize', getMoviesDisplayQuantity);
-  }, [moviesQuantity, movies]);
+    const handleResizeWindow = () => {
+      getMoviesDisplayQuantity();
+    };
+
+    window.addEventListener('resize', handleResizeWindow);
+
+    return () => window.removeEventListener('resize', handleResizeWindow);
+  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.addEventListener('resize', getMoviesDisplayQuantity);
+  //   }, TIMER);
+  //   return window.removeEventListener('resize', getMoviesDisplayQuantity);
+  // }, [moviesQuantity, movies]);
 
   function handleShowMoreMovies() {
     const display = window.innerWidth;
