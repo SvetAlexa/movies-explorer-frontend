@@ -9,10 +9,9 @@ export default function MoviesCardList({
   movies, isSavedMovies, isSearchError, searchErrorMessage,
 }) {
   const [moviesQuantity, setMoviesQuantity] = useState(0);
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   function getMoviesDisplayQuantity() {
-    const display = window.innerWidth;
+    const display = document.documentElement.clientWidth;
     if (display >= deviceSize.desktop.width) {
       setMoviesQuantity(deviceSize.desktop.quantity);
     }
@@ -29,26 +28,22 @@ export default function MoviesCardList({
 
   useEffect(() => {
     getMoviesDisplayQuantity();
-  }, []);
+  }, [movies]);
 
   useEffect(() => {
     const handleResizeWindow = () => {
       getMoviesDisplayQuantity();
+      console.log(window.innerWidth);
+      console.log(document.documentElement.clientWidth);
     };
 
     window.addEventListener('resize', handleResizeWindow);
 
     return () => window.removeEventListener('resize', handleResizeWindow);
   }, []);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     window.addEventListener('resize', getMoviesDisplayQuantity);
-  //   }, TIMER);
-  //   return window.removeEventListener('resize', getMoviesDisplayQuantity);
-  // }, [moviesQuantity, movies]);
 
   function handleShowMoreMovies() {
-    const display = window.innerWidth;
+    const display = document.documentElement.clientWidth;
     if (display >= deviceSize.desktop.width) {
       setMoviesQuantity(moviesQuantity + deviceSize.desktop.increase);
     }

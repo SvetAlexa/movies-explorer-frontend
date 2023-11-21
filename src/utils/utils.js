@@ -1,5 +1,3 @@
-import { deviceSize } from './constants';
-
 export function getHoursAndMinutes(totalMinutes) {
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
@@ -15,36 +13,4 @@ export function getFilteredMovies(movies, inputValue) {
     || movieNameEn.includes(inputValue.toLowerCase());
   });
   return results;
-}
-
-export function getMoviesDisplayQuantity(setQuantity) {
-  const displaySize = window.innerWidth;
-  if (displaySize >= deviceSize.desktop.width) {
-    setQuantity(deviceSize.desktop.quantity);
-  }
-  if (displaySize >= deviceSize.bigTablet.width) {
-    setQuantity(deviceSize.bigTablet.quantity);
-  }
-  if (displaySize >= deviceSize.tablet.width) {
-    setQuantity(deviceSize.tablet.quantity);
-  }
-  if (displaySize <= deviceSize.mobile.width) {
-    setQuantity(deviceSize.mobile.quantity);
-  }
-}
-
-export function getMoreMoviesQuantity(setQuantity, quantity) {
-  const displaySize = window.innerWidth;
-  if (displaySize >= deviceSize.desktop.width) {
-    setQuantity(quantity + deviceSize.desktop.increase);
-  }
-  if (displaySize >= deviceSize.bigTablet.width) {
-    setQuantity(quantity + deviceSize.bigTablet.increase);
-  }
-  if (displaySize >= deviceSize.tablet.width) {
-    setQuantity(quantity + deviceSize.tablet.increase);
-  }
-  if (displaySize <= deviceSize.mobile.width) {
-    setQuantity(quantity + deviceSize.mobile.increase);
-  }
 }
