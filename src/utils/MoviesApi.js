@@ -1,8 +1,8 @@
 /* eslint-disable prefer-promise-reject-errors */
-// import { BASE_MOVIES_URL } from './constants';
+import { BASE_MOVIES_URL } from './constants';
 
 export default function getMovies() {
-  return fetch('https://api.nomoreparties.co/beatfilm-movies', {
+  return fetch(`${BASE_MOVIES_URL}`, {
     method: 'GET',
   })
     .then((res) => {

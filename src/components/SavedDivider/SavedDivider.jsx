@@ -1,11 +1,11 @@
 import React from 'react';
 import './SavedDivider.css';
 
-export default function SavedDivider({ isSavedMovies }) {
+export default function SavedDivider({ isEmpty, onClick }) {
   return (
     <section className='optional-section'>
       {
-        isSavedMovies ? '' : <button className='optional-section__button' type='button'>Ещё</button>
+        isEmpty ? '' : <button className='optional-section__button' type='button' onClick={onClick}>Ещё</button>
       }
     </section>
   );

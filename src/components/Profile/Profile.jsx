@@ -14,6 +14,7 @@ import {
   ERROR_SERVER_PROFILE,
   ERROR_BAD_REQUEST_SERVER,
   OK_SERVER_PROFILE,
+  TIMER,
 } from '../../utils/constants';
 import './Profile.css';
 
@@ -82,7 +83,7 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
         setIsResponseRegister(OK_SERVER_PROFILE);
         setTimeout(() => {
           setIsResponseRegister('');
-        }, 2000);
+        }, TIMER);
         setIsEditMode(false);
       })
       .catch((err) => {

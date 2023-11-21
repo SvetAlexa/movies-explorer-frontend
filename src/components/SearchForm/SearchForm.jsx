@@ -19,11 +19,11 @@ export default function SearchForm({
               onChange={onChange}
               required
             />
-            <button className='search-form__button' type='submit'>Найти</button>
+            <button className='search-form__button' disabled={isDisabled} type='submit'>Найти</button>
           </div>
           <FilterCheckbox />
         </form>
-        <span className='search-error'>{message}</span>
+        <span className='search__error'>{message}</span>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useState } from 'react';
-import getHoursAndMinutes from '../../utils/utils';
+import { getHoursAndMinutes } from '../../utils/utils';
 import { MOVIE_IMAGE_URL } from '../../utils/constants';
 import './MoviesCard.css';
 
