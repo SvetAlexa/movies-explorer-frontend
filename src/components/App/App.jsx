@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -11,12 +11,17 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import { login, getUserInfo } from '../../utils/MainApi';
+import {
+  login, getUserInfo, getAddedToSavedMovies, addMovieToSaved, deleteAddedSavedMovies,
+} from '../../utils/MainApi';
 import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  const { pathname } = useLocation();
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -31,6 +36,36 @@ function App() {
         console.error(`Произошла ошибка: ${err}`);
       });
   }, []);
+
+  useEffect(() => {
+    getAddedToSavedMovies()
+      .then((data) => {
+        setSavedMovies(data);
+      })
+      .catch((err) => {
+        console.error(`Произошла ошибка: ${err}`);
+      });
+  }, [isLoggedIn]);
+
+  function handleSaveMovie(movie) {
+    addMovieToSaved(movie)
+      .then((data) => {
+        setSavedMovies([...savedMovies, data]);
+      })
+      .catch((err) => {
+        console.error(`Произошла ошибка: ${err}`);
+      });
+  }
+
+  function handleDeleteSavedMovie(movie) {
+    deleteAddedSavedMovies(pathname === '/movies' ? movie : movie._id)
+      .then((deletedMovieId) => {
+        setSavedMovies((state) => state.filter((item) => item._id !== deletedMovieId._id));
+      })
+      .catch((err) => {
+        console.error(`Произошла ошибка: ${err}`);
+      });
+  }
 
   function handleBurgerMenuOpen() {
     setIsBurgerMenuOpen(true);
@@ -73,7 +108,11 @@ function App() {
                   onMenuButtonCloseClick={handleBurgerMenuClose}
                   onMenuButtonOpenClick={handleBurgerMenuOpen}
                 />
-                <Movies />
+                <Movies
+                  savedMovies={savedMovies}
+                  onSaveMovie={handleSaveMovie}
+                  onDelete={handleDeleteSavedMovie}
+                />
                 <Footer />
               </>
             )}
@@ -89,7 +128,7 @@ function App() {
                   onMenuButtonCloseClick={handleBurgerMenuClose}
                   onMenuButtonOpenClick={handleBurgerMenuOpen}
                 />
-                <SavedMovies />
+                <SavedMovies savedMovies={savedMovies} onDelete={handleDeleteSavedMovie} />
                 <Footer />
               </>
             )}

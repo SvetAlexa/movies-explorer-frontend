@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Preloader from '../Preloader/Preloader';
@@ -8,14 +9,14 @@ import { INVALID_SEARCH_INPUT, INVALID_SEARCH_NOT_FOUND, ERROR_SERVER_SEARCH } f
 import { getFilteredMovies } from '../../utils/utils';
 import './Movies.css';
 
-export default function Movies() {
+export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]); // все фильмы от стороннего API (beatfilm)
+  const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem('movies')) || []); // все фильмы от стороннего API (beatfilm)
 
   const [valueInput, setValueInput] = useState(''); // текущее значение инпута
   const [valueFilteredInput, setValueFilteredInput] = useState(''); // значение инпута после нажатия кнопки "Найти"
   const [messageSearch, setMessageSearch] = useState('');
-  const [searchedMovies, setSearchedMovies] = useState([]);
+  const [searchedMovies, setSearchedMovies] = useState(() => JSON.parse(localStorage.getItem('searchedMovies')) || []);
   const [isSearchError, setIsSearchError] = useState(false);
   const [searchErrorMessage, setSearchErrorMessage] = useState('');
   const [isFormSearchDisabled, setIsFormSearchDisabled] = useState(false);
@@ -23,6 +24,14 @@ export default function Movies() {
   function handleInputSearchChange(evt) {
     setValueInput(evt.target.value);
   }
+
+  // отображение результатов последнего поискового запроса при возвращении на страницу
+  useEffect(() => {
+    if (localStorage.getItem('movies')) {
+      setValueInput(localStorage.getItem('searchQuery'));
+      setValueFilteredInput(localStorage.getItem('searchQuery'));
+    }
+  }, []);
 
   // поиск фильмов из сохраненный базы beatfilm
   useEffect(() => {
@@ -34,6 +43,7 @@ export default function Movies() {
     }
     const resultsFilms = getFilteredMovies(movies, valueFilteredInput);
     setSearchedMovies(resultsFilms);
+    localStorage.setItem('searchedMovies', JSON.stringify(resultsFilms));
   }, [movies, searchedMovies.length, valueFilteredInput]);
 
   function handleSubmit(evt) {
@@ -43,6 +53,7 @@ export default function Movies() {
       return;
     }
     setValueFilteredInput(valueInput);
+    localStorage.setItem('searchQuery', valueInput);
     if (movies.length > 0) {
       return;
     }
@@ -52,6 +63,7 @@ export default function Movies() {
     getMovies()
       .then((films) => {
         setMovies(films);
+        localStorage.setItem('movies', JSON.stringify(films));
       })
       .catch((err) => {
         console.error(`Произошла ошибка: ${err}`);
@@ -82,6 +94,9 @@ export default function Movies() {
               isSavedMovies={false}
               isSearchError={isSearchError}
               searchErrorMessage={searchErrorMessage}
+              savedMovies={savedMovies}
+              onSaveMovie={onSaveMovie}
+              onDelete={onDelete}
             />
           )
       }

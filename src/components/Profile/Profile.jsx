@@ -69,6 +69,7 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
       .then(() => {
         setIsLoggedIn(false);
         setCurrentUser({});
+        localStorage.clear();
         navigate('/', { replace: true });
       });
   }

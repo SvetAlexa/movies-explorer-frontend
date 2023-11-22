@@ -1,7 +1,7 @@
 /* eslint-disable semi */
 /* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable arrow-body-style */
-import { BASE_URL } from './constants';
+import { BASE_URL, MOVIE_IMAGE_URL } from './constants';
 
 export function checkResponse(res) {
   if (res.ok) {
@@ -68,6 +68,55 @@ export const updateUserInfo = (data) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
+  })
+    .then((res) => {
+      return checkResponse(res);
+    })
+}
+
+export const getAddedToSavedMovies = () => {
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'GET',
+    credentials: 'include',
+  })
+    .then((res) => {
+      return checkResponse(res);
+    })
+}
+
+export const addMovieToSaved = (data) => {
+  const {
+    country, director, duration, year, description, image, trailerLink, nameRU, nameEN, id,
+  } = data
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      country,
+      description,
+      director,
+      duration,
+      movieId: id,
+      image: `${MOVIE_IMAGE_URL}${image.url}`,
+      nameEN,
+      nameRU,
+      trailerLink,
+      year,
+      thumbnail: `${MOVIE_IMAGE_URL}${image.formats.thumbnail.url}`,
+    }),
+  })
+    .then((res) => {
+      return checkResponse(res);
+    })
+}
+
+export const deleteAddedSavedMovies = (id) => {
+  return fetch(`${BASE_URL}/movies/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
   })
     .then((res) => {
       return checkResponse(res);

@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import SavedDivider from '../SavedDivider/SavedDivider';
-import { deviceSize, TIMER } from '../../utils/constants';
+import { deviceSize } from '../../utils/constants';
 import './MoviesCardList.css';
 
 export default function MoviesCardList({
-  movies, isSavedMovies, isSearchError, searchErrorMessage,
+  movies, isSavedMovies, isSearchError, searchErrorMessage, onDelete, onSaveMovie, savedMovies,
 }) {
+  const { pathname } = useLocation();
   const [moviesQuantity, setMoviesQuantity] = useState(0);
 
   function getMoviesDisplayQuantity() {
@@ -33,8 +35,6 @@ export default function MoviesCardList({
   useEffect(() => {
     const handleResizeWindow = () => {
       getMoviesDisplayQuantity();
-      console.log(window.innerWidth);
-      console.log(document.documentElement.clientWidth);
     };
 
     window.addEventListener('resize', handleResizeWindow);
@@ -57,7 +57,6 @@ export default function MoviesCardList({
       setMoviesQuantity(moviesQuantity + deviceSize.mobile.increase);
     }
   }
-
   return (
     isSearchError ? (
       <section className='movies-elements'>
@@ -65,19 +64,51 @@ export default function MoviesCardList({
       </section>
     ) : (
       <>
-        <section className={`movies-elements ${!(movies.length > moviesQuantity) || isSavedMovies ? 'movies-elements_place_saved-movies' : ''}`}>
-          <ul className='movies-elements__list'>
-            {movies.slice(0, moviesQuantity).map((item) => (
-              <MoviesCard
-                key={item.id}
-                movie={item}
-                isSavedMovies={isSavedMovies}
-              />
-            ))}
-          </ul>
-        </section>
-        {movies.length > moviesQuantity
-          && <SavedDivider isSavedMovies={isSavedMovies} onClick={handleShowMoreMovies} />}
+        {pathname === '/movies'
+          && (
+            <>
+              <section className={`movies-elements ${!(movies.length > moviesQuantity) || isSavedMovies ? 'movies-elements_place_saved-movies' : ''}`}>
+                <ul className='movies-elements__list'>
+                  {movies.slice(0, moviesQuantity).map((item) => {
+                    let savedId;
+                    savedMovies.forEach((savedMovie) => {
+                      if (savedMovie.movieId === item.id) {
+                        savedId = savedMovie._id;
+                      }
+                    });
+                    return (
+                      <MoviesCard
+                        key={item.id}
+                        movie={item}
+                        isSavedMovies={isSavedMovies}
+                        onSaveMovie={onSaveMovie}
+                        onDelete={onDelete}
+                        savedId={savedId}
+                        savedMovies={savedMovies}
+                      />
+                    );
+                  })}
+                </ul>
+              </section>
+              {movies.length > moviesQuantity
+                && <SavedDivider isSavedMovies={isSavedMovies} onClick={handleShowMoreMovies} />}
+            </>
+          )}
+        {pathname === '/saved-movies'
+          && (
+            <section className={`movies-elements ${isSavedMovies ? 'movies-elements_place_saved-movies' : ''}`}>
+              <ul className='movies-elements__list'>
+                {movies?.map((item) => (
+                  <MoviesCard
+                    key={item._id}
+                    movie={item}
+                    isSavedMovies={isSavedMovies}
+                    onDelete={onDelete}
+                  />
+                ))}
+              </ul>
+            </section>
+          )}
       </>
     )
   );
