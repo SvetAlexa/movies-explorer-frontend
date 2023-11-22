@@ -7,16 +7,16 @@ import { MOVIE_IMAGE_URL } from '../../utils/constants';
 import './MoviesCard.css';
 
 export default function MoviesCard({
-  movie, isSavedMovies, onDelete, onSaveMovie, savedId, savedMovies,
+  movie, isSavedMovies, onDelete, onSaveMovie, movieSavedId,
 }) {
   const { pathname } = useLocation();
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    if (savedId) {
+    if (movieSavedId) {
       setIsSaved(true);
     }
-  }, [savedId]);
+  }, [movieSavedId]);
 
   function handleSaveMovieClick() {
     onSaveMovie(movie);
@@ -24,7 +24,7 @@ export default function MoviesCard({
   }
 
   function handleDeleteMovieClick() {
-    onDelete(pathname === '/movies' ? savedId : movie);
+    onDelete(pathname === '/movies' ? movieSavedId : movie);
     setIsSaved(false);
   }
 

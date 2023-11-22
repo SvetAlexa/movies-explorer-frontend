@@ -70,10 +70,10 @@ export default function MoviesCardList({
               <section className={`movies-elements ${!(movies.length > moviesQuantity) || isSavedMovies ? 'movies-elements_place_saved-movies' : ''}`}>
                 <ul className='movies-elements__list'>
                   {movies.slice(0, moviesQuantity).map((item) => {
-                    let savedId;
+                    let movieSavedId;
                     savedMovies.forEach((savedMovie) => {
                       if (savedMovie.movieId === item.id) {
-                        savedId = savedMovie._id;
+                        movieSavedId = savedMovie._id;
                       }
                     });
                     return (
@@ -83,7 +83,7 @@ export default function MoviesCardList({
                         isSavedMovies={isSavedMovies}
                         onSaveMovie={onSaveMovie}
                         onDelete={onDelete}
-                        savedId={savedId}
+                        movieSavedId={movieSavedId}
                         savedMovies={savedMovies}
                       />
                     );

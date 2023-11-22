@@ -47,6 +47,10 @@ function App() {
       });
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  }, [savedMovies, setSavedMovies]);
+
   function handleSaveMovie(movie) {
     addMovieToSaved(movie)
       .then((data) => {
@@ -128,7 +132,11 @@ function App() {
                   onMenuButtonCloseClick={handleBurgerMenuClose}
                   onMenuButtonOpenClick={handleBurgerMenuOpen}
                 />
-                <SavedMovies savedMovies={savedMovies} onDelete={handleDeleteSavedMovie} />
+                <SavedMovies
+                  savedMovies={savedMovies}
+                  onDelete={handleDeleteSavedMovie}
+                  setSavedMovies={setSavedMovies}
+                />
                 <Footer />
               </>
             )}
