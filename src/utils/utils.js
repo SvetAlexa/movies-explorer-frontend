@@ -10,7 +10,12 @@ export function getFilteredMovies(movies, inputValue) {
     const movieNameRu = movie.nameRU.toLowerCase();
     const movieNameEn = movie.nameEN.toLowerCase();
     return movieNameRu.includes(inputValue.toLowerCase())
-    || movieNameEn.includes(inputValue.toLowerCase());
+      || movieNameEn.includes(inputValue.toLowerCase());
   });
   return results;
+}
+
+export function getShortsFilteredMovies(movies) {
+  const resultsShorts = movies.filter((movie) => movie.duration <= 40);
+  return resultsShorts;
 }

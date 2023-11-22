@@ -1,20 +1,20 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import SavedDivider from '../SavedDivider/SavedDivider';
-import { getFilteredMovies } from '../../utils/utils';
+import { getFilteredMovies, getShortsFilteredMovies } from '../../utils/utils';
 import { INVALID_SEARCH_INPUT, INVALID_SEARCH_NOT_FOUND } from '../../utils/constants';
 import './SavedMovies.css';
 
-export default function SavedMovies({ savedMovies, setSavedMovies, onDelete }) {
+export default function SavedMovies({ savedMovies, onDelete }) {
   const [valueInput, setValueInput] = useState(''); // текущее значение инпута
   const [valueFilteredInput, setValueFilteredInput] = useState(''); // значение инпута после нажатия кнопки "Найти"
   const [messageSearch, setMessageSearch] = useState('');
   const [searchedSavedMovies, setSearchedSavedMovies] = useState(savedMovies);
   const [isSearchError, setIsSearchError] = useState(false);
   const [searchErrorMessage, setSearchErrorMessage] = useState('');
-  const [isFormSearchDisabled, setIsFormSearchDisabled] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   function handleInputSearchChange(evt) {
     setValueInput(evt.target.value);
@@ -25,11 +25,27 @@ export default function SavedMovies({ savedMovies, setSavedMovies, onDelete }) {
     setSearchErrorMessage('');
     const resultsFilteredFilms = getFilteredMovies(savedMovies, valueInput);
     setSearchedSavedMovies(resultsFilteredFilms);
+    if (isChecked) {
+      const resultsFilteredFilmsWithCheckbox = getShortsFilteredMovies(savedMovies);
+      setSearchedSavedMovies(resultsFilteredFilmsWithCheckbox);
+      if (resultsFilteredFilmsWithCheckbox.length === 0) {
+        setIsSearchError(true);
+        setSearchErrorMessage(INVALID_SEARCH_NOT_FOUND);
+      }
+    }
+    if (isChecked && resultsFilteredFilms) {
+      const resultsFilteredFilmsWithCheckbox = getShortsFilteredMovies(resultsFilteredFilms);
+      setSearchedSavedMovies(resultsFilteredFilmsWithCheckbox);
+      if (resultsFilteredFilmsWithCheckbox.length === 0) {
+        setIsSearchError(true);
+        setSearchErrorMessage(INVALID_SEARCH_NOT_FOUND);
+      }
+    }
     if (valueFilteredInput && searchedSavedMovies.length === 0) {
       setIsSearchError(true);
       setSearchErrorMessage(INVALID_SEARCH_NOT_FOUND);
     }
-  }, [valueFilteredInput, savedMovies, searchedSavedMovies.length]);
+  }, [valueFilteredInput, savedMovies, searchedSavedMovies.length, isChecked]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -45,10 +61,11 @@ export default function SavedMovies({ savedMovies, setSavedMovies, onDelete }) {
     <main className='main'>
       <SearchForm
         onSubmit={handleSubmit}
-        isDisabled={isFormSearchDisabled}
         value={valueInput}
         onChange={handleInputSearchChange}
         message={messageSearch}
+        setIsChecked={setIsChecked}
+        isChecked={isChecked}
       />
       <MoviesCardList
         isSavedMovies

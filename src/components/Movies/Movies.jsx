@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import getMovies from '../../utils/MoviesApi';
 import { INVALID_SEARCH_INPUT, INVALID_SEARCH_NOT_FOUND, ERROR_SERVER_SEARCH } from '../../utils/constants';
-import { getFilteredMovies } from '../../utils/utils';
+import { getFilteredMovies, getShortsFilteredMovies } from '../../utils/utils';
 import './Movies.css';
 
 export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
@@ -20,6 +20,7 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
   const [isSearchError, setIsSearchError] = useState(false);
   const [searchErrorMessage, setSearchErrorMessage] = useState('');
   const [isFormSearchDisabled, setIsFormSearchDisabled] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   function handleInputSearchChange(evt) {
     setValueInput(evt.target.value);
@@ -30,6 +31,7 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
     if (localStorage.getItem('movies')) {
       setValueInput(localStorage.getItem('searchQuery'));
       setValueFilteredInput(localStorage.getItem('searchQuery'));
+      setIsChecked(JSON.parse(localStorage.getItem('checkbox')));
     }
   }, []);
 
@@ -43,8 +45,16 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
     }
     const resultsFilms = getFilteredMovies(movies, valueFilteredInput);
     setSearchedMovies(resultsFilms);
+    if (isChecked) {
+      const resultsFilmsWithCheckbox = getShortsFilteredMovies(resultsFilms);
+      setSearchedMovies(resultsFilmsWithCheckbox);
+      if (resultsFilmsWithCheckbox.length === 0) {
+        setIsSearchError(true);
+        setSearchErrorMessage(INVALID_SEARCH_NOT_FOUND);
+      }
+    }
     localStorage.setItem('searchedMovies', JSON.stringify(resultsFilms));
-  }, [movies, searchedMovies.length, valueFilteredInput]);
+  }, [movies, searchedMovies.length, valueFilteredInput, isChecked]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -84,6 +94,8 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
         value={valueInput}
         onChange={handleInputSearchChange}
         message={messageSearch}
+        isChecked={isChecked}
+        setIsChecked={setIsChecked}
       />
       {
         isLoading

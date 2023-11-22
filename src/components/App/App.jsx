@@ -12,7 +12,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import {
-  login, getUserInfo, getAddedToSavedMovies, addMovieToSaved, deleteAddedSavedMovies,
+  getUserInfo, getAddedToSavedMovies, addMovieToSaved, deleteAddedSavedMovies,
 } from '../../utils/MainApi';
 import './App.css';
 
@@ -46,10 +46,6 @@ function App() {
         console.error(`Произошла ошибка: ${err}`);
       });
   }, [isLoggedIn]);
-
-  useEffect(() => {
-    localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
-  }, [savedMovies, setSavedMovies]);
 
   function handleSaveMovie(movie) {
     addMovieToSaved(movie)

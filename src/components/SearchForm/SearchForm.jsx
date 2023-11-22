@@ -3,7 +3,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
 export default function SearchForm({
-  onSubmit, value, isDisabled, onChange, message,
+  onSubmit, value, isDisabled, onChange, message, isChecked, setIsChecked,
 }) {
   return (
     <section className='search-form'>
@@ -21,7 +21,7 @@ export default function SearchForm({
             />
             <button className='search-form__button' disabled={isDisabled} type='submit'>Найти</button>
           </div>
-          <FilterCheckbox />
+          <FilterCheckbox isChecked={isChecked} setIsChecked={setIsChecked} />
         </form>
         <span className='search__error'>{message}</span>
       </div>
