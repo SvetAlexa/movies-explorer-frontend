@@ -26,11 +26,16 @@ export default function Login({ setIsLoggedIn, setCurrentUser }) {
 
   const navigate = useNavigate();
 
+  const [isDisabledInputs, setIsDisabledInputs] = useState(false);
+  const [isSubmitButtonDisable, setIsSubmitButtonDisable] = useState(false);
+
   const [isResponseLogin, setIsResponseLogin] = useState(''); // ошибки от сервера
 
   function handleSubmit(evt) {
     evt.preventDefault();
     setIsResponseLogin('');
+    setIsDisabledInputs(true);
+    setIsSubmitButtonDisable(true);
     login(values)
       .then((data) => {
         setIsLoggedIn(true);
@@ -39,6 +44,8 @@ export default function Login({ setIsLoggedIn, setCurrentUser }) {
       })
       .catch((err) => {
         console.error(`Произошла ошибка: ${err}`);
+        setIsDisabledInputs(false);
+        setIsSubmitButtonDisable(false);
         if (err === UNAUTHORIZED_CODE) {
           return setIsResponseLogin(ERROR_UNAUTHORIZED_LOGIN);
         }
@@ -60,6 +67,7 @@ export default function Login({ setIsLoggedIn, setCurrentUser }) {
         isValid={formLoginValidityStatus}
         onSubmit={handleSubmit}
         setIsLoggedIn={setIsLoggedIn}
+        isDisabled={isSubmitButtonDisable}
         isResponse={isResponseLogin}
       >
         <AuthFormInput
@@ -69,6 +77,7 @@ export default function Login({ setIsLoggedIn, setCurrentUser }) {
           placeholder='E-mail'
           name='email'
           onChange={handleEmailInputChange}
+          isDisabled={isDisabledInputs}
           errorText={errors.email}
         />
         <AuthFormInput
@@ -80,6 +89,7 @@ export default function Login({ setIsLoggedIn, setCurrentUser }) {
           minLength={6}
           maxLength={30}
           onChange={handlePasswordInputChange}
+          isDisabled={isDisabledInputs}
           errorText={errors.password}
         />
       </AuthForm>

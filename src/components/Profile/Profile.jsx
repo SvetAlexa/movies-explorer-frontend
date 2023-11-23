@@ -46,7 +46,7 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
     evt.preventDefault();
     setIsDisabledInputs(false);
     setIsEditMode(true);
-    setIsSubmitButtonDisable(false);
+    // setIsSubmitButtonDisable(false);
   }
 
   useEffect(() => {
@@ -71,12 +71,16 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
         setCurrentUser({});
         localStorage.clear();
         navigate('/', { replace: true });
+      })
+      .catch((err) => {
+        console.error(`Произошла ошибка: ${err}`);
       });
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
     setIsDisabledInputs(true);
+    setIsSubmitButtonDisable(false);
     setIsSending(true);
     updateUserInfo({ name: nameValue, email: emailValue })
       .then((res) => {
@@ -89,7 +93,7 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
       })
       .catch((err) => {
         setIsDisabledInputs(false);
-        setIsSubmitButtonDisable(false);
+        setIsSubmitButtonDisable(true);
         console.error(`Произошла ошибка: ${err}`);
         if (err === CONFLICT_CODE) {
           return setIsResponseRegister(ERROR_CONFLICT);
@@ -151,7 +155,7 @@ export default function Profile({ setIsLoggedIn, setCurrentUser }) {
               <>
                 <span className='profile__status-error'>{isResponseRegister}</span>
                 <button
-                  className={`profile__form-button ${!isSubmitButtonDisable ? 'profile__form-button_is_valid' : ''}`}
+                  className={`profile__form-button ${isSubmitButtonDisable ? '' : 'profile__form-button_is_disabled'}`}
                   type='submit'
                   disabled={!isSubmitButtonDisable}
                 >

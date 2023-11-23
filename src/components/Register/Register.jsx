@@ -28,10 +28,14 @@ export default function Register({ setIsLoggedIn, setCurrentUser }) {
 
   const navigate = useNavigate();
 
+  const [isDisabledInputs, setIsDisabledInputs] = useState(false);
+  const [isSubmitButtonDisable, setIsSubmitButtonDisable] = useState(false);
   const [isResponseRegister, setIsResponseRegister] = useState(''); // ошибки от сервера
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setIsDisabledInputs(true);
+    setIsSubmitButtonDisable(true);
     setIsResponseRegister('');
     register(values)
       .then(() => {
@@ -42,10 +46,15 @@ export default function Register({ setIsLoggedIn, setCurrentUser }) {
             setIsLoggedIn(true);
             setCurrentUser({ email, name });
             navigate('/movies', { replace: true });
+          })
+          .catch((err) => {
+            console.error(`Произошла ошибка: ${err}`);
           });
       })
       .catch((err) => {
         console.error(`Произошла ошибка: ${err}`);
+        setIsDisabledInputs(false);
+        setIsSubmitButtonDisable(false);
         if (err === CONFLICT_CODE) {
           return setIsResponseRegister(ERROR_CONFLICT);
         }
@@ -67,6 +76,7 @@ export default function Register({ setIsLoggedIn, setCurrentUser }) {
         isValid={formRegisterValidityStatus}
         onSubmit={handleSubmit}
         setIsLoggedIn={setIsLoggedIn}
+        isDisabled={isSubmitButtonDisable}
         isResponse={isResponseRegister}
       >
         <AuthFormInput
@@ -77,6 +87,7 @@ export default function Register({ setIsLoggedIn, setCurrentUser }) {
           name='name'
           minLength={2}
           maxLength={30}
+          isDisabled={isDisabledInputs}
           onChange={handleNameInputChange}
           errorText={errors.name}
         />
@@ -87,6 +98,7 @@ export default function Register({ setIsLoggedIn, setCurrentUser }) {
           name='email'
           type='email'
           onChange={handleEmailInputChange}
+          isDisabled={isDisabledInputs}
           errorText={errors.email}
         />
         <AuthFormInput
@@ -98,6 +110,7 @@ export default function Register({ setIsLoggedIn, setCurrentUser }) {
           minLength={6}
           maxLength={30}
           onChange={handlePasswordInputChange}
+          isDisabled={isDisabledInputs}
           errorText={errors.password}
         />
       </AuthForm>
