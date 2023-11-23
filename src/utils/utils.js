@@ -1,6 +1,8 @@
+import { SHORT_MOVIE_MAX_DURATION, MINUTES_PER_HOUR } from './constants';
+
 export function getHoursAndMinutes(totalMinutes) {
-  const minutes = totalMinutes % 60;
-  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % MINUTES_PER_HOUR;
+  const hours = Math.floor(totalMinutes / MINUTES_PER_HOUR);
 
   return `${hours}ч ${minutes}м`;
 }
@@ -16,6 +18,6 @@ export function getFilteredMovies(movies, inputValue) {
 }
 
 export function getShortsFilteredMovies(movies) {
-  const resultsShorts = movies.filter((movie) => movie.duration <= 40);
+  const resultsShorts = movies.filter((movie) => movie.duration <= SHORT_MOVIE_MAX_DURATION);
   return resultsShorts;
 }

@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import {
+  Routes, Route, useLocation, Navigate,
+} from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -15,8 +17,11 @@ import {
   getUserInfo, getAddedToSavedMovies, addMovieToSaved, deleteAddedSavedMovies,
 } from '../../utils/MainApi';
 import './App.css';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Preloader from '../Preloader/Preloader';
 
 function App() {
+  const [isAppUnready, setIsAppUnready] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
@@ -34,6 +39,9 @@ function App() {
       .catch((err) => {
         setIsLoggedIn(false);
         console.error(`Произошла ошибка: ${err}`);
+      })
+      .finally(() => {
+        setIsAppUnready(false);
       });
   }, []);
 
@@ -78,86 +86,105 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <div className='page'>
-        <Routes>
-          <Route
-            path='/'
-            element={(
-              <>
-                <Header
-                  isLanding
-                  isLoggedIn={isLoggedIn}
-                  isBurgerMenuOpen={isBurgerMenuOpen}
-                  onMenuButtonCloseClick={handleBurgerMenuClose}
-                  onMenuButtonOpenClick={handleBurgerMenuOpen}
-                />
-                <Main />
-                <Footer />
-              </>
-            )}
-          />
-          <Route
-            path='/movies'
-            element={(
-              <>
-                <Header
-                  isLanding={false}
-                  isLoggedIn={isLoggedIn}
-                  isBurgerMenuOpen={isBurgerMenuOpen}
-                  onMenuButtonCloseClick={handleBurgerMenuClose}
-                  onMenuButtonOpenClick={handleBurgerMenuOpen}
-                />
-                <Movies
-                  savedMovies={savedMovies}
-                  onSaveMovie={handleSaveMovie}
-                  onDelete={handleDeleteSavedMovie}
-                />
-                <Footer />
-              </>
-            )}
-          />
-          <Route
-            path='/saved-movies'
-            element={(
-              <>
-                <Header
-                  isLanding={false}
-                  isLoggedIn={isLoggedIn}
-                  isBurgerMenuOpen={isBurgerMenuOpen}
-                  onMenuButtonCloseClick={handleBurgerMenuClose}
-                  onMenuButtonOpenClick={handleBurgerMenuOpen}
-                />
-                <SavedMovies
-                  savedMovies={savedMovies}
-                  onDelete={handleDeleteSavedMovie}
-                  setSavedMovies={setSavedMovies}
-                />
-                <Footer />
-              </>
-            )}
-          />
-          <Route path='/signup' element={<Register setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />} />
-          <Route path='/signin' element={<Login setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />} />
-          <Route
-            path='/profile'
-            element={(
-              <>
-                <Header
-                  isLanding={false}
-                  isLoggedIn={isLoggedIn}
-                  isBurgerMenuOpen={isBurgerMenuOpen}
-                  onMenuButtonCloseClick={handleBurgerMenuClose}
-                  onMenuButtonOpenClick={handleBurgerMenuOpen}
-                />
-                <Profile setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />
-              </>
-            )}
-          />
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-      </div>
-    </CurrentUserContext.Provider>
+    <div className='page'>
+      {isAppUnready
+        ? <Preloader />
+        : (
+          <CurrentUserContext.Provider value={currentUser}>
+            <Routes>
+              <Route
+                path='/'
+                element={(
+                  <>
+                    <Header
+                      isLanding
+                      isLoggedIn={isLoggedIn}
+                      isBurgerMenuOpen={isBurgerMenuOpen}
+                      onMenuButtonCloseClick={handleBurgerMenuClose}
+                      onMenuButtonOpenClick={handleBurgerMenuOpen}
+                    />
+                    <Main />
+                    <Footer />
+                  </>
+                )}
+              />
+              <Route
+                path='/movies'
+                element={(
+                  <ProtectedRoute
+                    element={(
+                      <>
+                        <Header
+                          isLanding={false}
+                          isLoggedIn={isLoggedIn}
+                          isBurgerMenuOpen={isBurgerMenuOpen}
+                          onMenuButtonCloseClick={handleBurgerMenuClose}
+                          onMenuButtonOpenClick={handleBurgerMenuOpen}
+                        />
+                        <Movies
+                          savedMovies={savedMovies}
+                          onSaveMovie={handleSaveMovie}
+                          onDelete={handleDeleteSavedMovie}
+                        />
+                        <Footer />
+                      </>
+                    )}
+                    isLoggedIn={isLoggedIn}
+                  />
+                )}
+              />
+              <Route
+                path='/saved-movies'
+                element={(
+                  <ProtectedRoute
+                    element={(
+                      <>
+                        <Header
+                          isLanding={false}
+                          isLoggedIn={isLoggedIn}
+                          isBurgerMenuOpen={isBurgerMenuOpen}
+                          onMenuButtonCloseClick={handleBurgerMenuClose}
+                          onMenuButtonOpenClick={handleBurgerMenuOpen}
+                        />
+                        <SavedMovies
+                          savedMovies={savedMovies}
+                          onDelete={handleDeleteSavedMovie}
+                          setSavedMovies={setSavedMovies}
+                        />
+                        <Footer />
+                      </>
+                    )}
+                    isLoggedIn={isLoggedIn}
+                  />
+                )}
+              />
+              <Route path='/signup' element={!isLoggedIn ? (<Register setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />) : <Navigate to='/movies' />} />
+              <Route path='/signin' element={!isLoggedIn ? (<Login setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />) : <Navigate to='/movies' />} />
+              <Route
+                path='/profile'
+                element={(
+                  <ProtectedRoute
+                    element={(
+                      <>
+                        <Header
+                          isLanding={false}
+                          isLoggedIn={isLoggedIn}
+                          isBurgerMenuOpen={isBurgerMenuOpen}
+                          onMenuButtonCloseClick={handleBurgerMenuClose}
+                          onMenuButtonOpenClick={handleBurgerMenuOpen}
+                        />
+                        <Profile setIsLoggedIn={setIsLoggedIn} setCurrentUser={setCurrentUser} />
+                      </>
+                    )}
+                    isLoggedIn={isLoggedIn}
+                  />
+                )}
+              />
+              <Route path='*' element={<PageNotFound />} />
+            </Routes>
+          </CurrentUserContext.Provider>
+        )}
+    </div>
   );
 }
 

@@ -21,7 +21,6 @@ export default function Login({ setIsLoggedIn, setCurrentUser }) {
     passwordValue,
     errors,
     handleEmailInputChange,
-
     handlePasswordInputChange,
   } = useFormValidator();
 
