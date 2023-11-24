@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getHoursAndMinutes } from '../../utils/utils';

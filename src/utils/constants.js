@@ -1,7 +1,5 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable import/prefer-default-export */
-// const BASE_URL = 'https://api.movies-diploma.nomoredomainsrocks.ru';
-const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'https://api.movies-diploma.nomoredomainsrocks.ru';
+// const BASE_URL = 'http://127.0.0.1:3000';
 const BASE_MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 const MOVIE_IMAGE_URL = 'https://api.nomoreparties.co';
 
@@ -32,7 +30,7 @@ const ERROR_SERVER_PROFILE = 'При обновлении профиля про�
 const ERROR_SERVER_SEARCH = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
 const OK_SERVER_PROFILE = 'Данные профиля успешно изменены!';
 
-const deviceSize = {
+const DEVICE_SIZE = {
   desktop: {
     width: 1280,
     quantity: 16,
@@ -81,5 +79,5 @@ export {
   ERROR_SERVER_PROFILE,
   ERROR_SERVER_SEARCH,
   OK_SERVER_PROFILE,
-  deviceSize,
+  DEVICE_SIZE,
 };

@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import SavedDivider from '../SavedDivider/SavedDivider';
-import { deviceSize } from '../../utils/constants';
+import { DEVICE_SIZE } from '../../utils/constants';
 import './MoviesCardList.css';
 
 export default function MoviesCardList({
@@ -14,17 +13,17 @@ export default function MoviesCardList({
 
   function getMoviesDisplayQuantity() {
     const display = document.documentElement.clientWidth;
-    if (display >= deviceSize.desktop.width) {
-      setMoviesQuantity(deviceSize.desktop.quantity);
+    if (display >= DEVICE_SIZE.desktop.width) {
+      setMoviesQuantity(DEVICE_SIZE.desktop.quantity);
     }
-    if (display >= deviceSize.bigTablet.width && display < deviceSize.desktop.width) {
-      setMoviesQuantity(+deviceSize.bigTablet.quantity);
+    if (display >= DEVICE_SIZE.bigTablet.width && display < DEVICE_SIZE.desktop.width) {
+      setMoviesQuantity(+DEVICE_SIZE.bigTablet.quantity);
     }
-    if (display >= deviceSize.tablet.width && display < deviceSize.bigTablet.width) {
-      setMoviesQuantity(deviceSize.tablet.quantity);
+    if (display >= DEVICE_SIZE.tablet.width && display < DEVICE_SIZE.bigTablet.width) {
+      setMoviesQuantity(DEVICE_SIZE.tablet.quantity);
     }
-    if (display <= deviceSize.mobile.width) {
-      setMoviesQuantity(deviceSize.mobile.quantity);
+    if (display <= DEVICE_SIZE.mobile.width) {
+      setMoviesQuantity(DEVICE_SIZE.mobile.quantity);
     }
   }
 
@@ -44,17 +43,17 @@ export default function MoviesCardList({
 
   function handleShowMoreMovies() {
     const display = document.documentElement.clientWidth;
-    if (display >= deviceSize.desktop.width) {
-      setMoviesQuantity(moviesQuantity + deviceSize.desktop.increase);
+    if (display >= DEVICE_SIZE.desktop.width) {
+      setMoviesQuantity(moviesQuantity + DEVICE_SIZE.desktop.increase);
     }
-    if (display >= deviceSize.bigTablet.width && display < deviceSize.desktop.width) {
-      setMoviesQuantity(moviesQuantity + deviceSize.bigTablet.increase);
+    if (display >= DEVICE_SIZE.bigTablet.width && display < DEVICE_SIZE.desktop.width) {
+      setMoviesQuantity(moviesQuantity + DEVICE_SIZE.bigTablet.increase);
     }
-    if (display >= deviceSize.tablet.width && display < deviceSize.bigTablet.width) {
-      setMoviesQuantity(moviesQuantity + deviceSize.tablet.increase);
+    if (display >= DEVICE_SIZE.tablet.width && display < DEVICE_SIZE.bigTablet.width) {
+      setMoviesQuantity(moviesQuantity + DEVICE_SIZE.tablet.increase);
     }
-    if (display <= deviceSize.mobile.width) {
-      setMoviesQuantity(moviesQuantity + deviceSize.mobile.increase);
+    if (display <= DEVICE_SIZE.mobile.width) {
+      setMoviesQuantity(moviesQuantity + DEVICE_SIZE.mobile.increase);
     }
   }
   return (

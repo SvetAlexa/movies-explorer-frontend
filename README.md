@@ -6,6 +6,8 @@
 
 **Макет проекта** - dark-1
 
+***Ссылка на pull request*** 
+
 **Ссылка на домен фронтенда** https://movies-diploma.nomoredomainsrocks.ru/
 
 **Ссылка на домен сервера** https://api.movies-diploma.nomoredomainsrocks.ru/

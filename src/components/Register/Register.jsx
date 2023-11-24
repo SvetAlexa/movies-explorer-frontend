@@ -49,6 +49,7 @@ export default function Register({ setIsLoggedIn, setCurrentUser }) {
           })
           .catch((err) => {
             console.error(`Произошла ошибка: ${err}`);
+            return setIsResponseRegister(ERROR_SERVER_REGISTER);
           });
       })
       .catch((err) => {

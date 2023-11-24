@@ -1,4 +1,3 @@
-/* eslint-disable semi */
 /* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable arrow-body-style */
 import { BASE_URL, MOVIE_IMAGE_URL } from './constants';
@@ -20,7 +19,7 @@ export const register = (data) => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
+    });
 };
 
 export const login = (data) => {
@@ -34,8 +33,8 @@ export const login = (data) => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
-}
+    });
+};
 
 export const logout = () => {
   return fetch(`${BASE_URL}/signout`, {
@@ -47,8 +46,8 @@ export const logout = () => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
-}
+    });
+};
 
 export const getUserInfo = () => {
   return fetch(`${BASE_URL}/users/me`, {
@@ -57,8 +56,8 @@ export const getUserInfo = () => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
-}
+    });
+};
 
 export const updateUserInfo = (data) => {
   return fetch(`${BASE_URL}/users/me`, {
@@ -71,8 +70,8 @@ export const updateUserInfo = (data) => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
-}
+    });
+};
 
 export const getAddedToSavedMovies = () => {
   return fetch(`${BASE_URL}/movies`, {
@@ -81,13 +80,13 @@ export const getAddedToSavedMovies = () => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
-}
+    });
+};
 
 export const addMovieToSaved = (data) => {
   const {
     country, director, duration, year, description, image, trailerLink, nameRU, nameEN, id,
-  } = data
+  } = data;
   return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     credentials: 'include',
@@ -110,8 +109,8 @@ export const addMovieToSaved = (data) => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
-}
+    });
+};
 
 export const deleteAddedSavedMovies = (id) => {
   return fetch(`${BASE_URL}/movies/${id}`, {
@@ -120,5 +119,5 @@ export const deleteAddedSavedMovies = (id) => {
   })
     .then((res) => {
       return checkResponse(res);
-    })
-}
+    });
+};

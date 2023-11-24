@@ -18,8 +18,6 @@ export default function AuthForm({
         <ul className='auth__form-list'>
           {children}
         </ul>
-        {/* <span className='auth__error'>При авторизации произошла ошибка.
-        Токен не передан или передан не в том формате.</span> */}
         <span className='auth__error'>{isResponse}</span>
         <button className={`auth__button ${!isValid || isDisabled ? 'auth__button_is_valid' : ''}`} type='submit' disabled={!isValid || isDisabled}>{buttonText}</button>
       </form>

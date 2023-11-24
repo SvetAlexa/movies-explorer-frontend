@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Preloader from '../Preloader/Preloader';
@@ -21,6 +20,7 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
   const [searchErrorMessage, setSearchErrorMessage] = useState('');
   const [isFormSearchDisabled, setIsFormSearchDisabled] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [isCheckboxDisabled, setIsCheckboxDisabled] = useState(false);
 
   function handleInputSearchChange(evt) {
     setValueInput(evt.target.value);
@@ -64,12 +64,14 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
     }
     setValueFilteredInput(valueInput);
     localStorage.setItem('searchQuery', valueInput);
+    localStorage.setItem('checkbox', isChecked);
     if (movies.length > 0) {
       return;
     }
     setMessageSearch('');
     setIsLoading(true);
     setIsFormSearchDisabled(true);
+    setIsCheckboxDisabled(true);
     getMovies()
       .then((films) => {
         setMovies(films);
@@ -83,6 +85,7 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
       .finally(() => {
         setIsLoading(false);
         setIsFormSearchDisabled(false);
+        setIsCheckboxDisabled(false);
       });
   }
 
@@ -96,6 +99,7 @@ export default function Movies({ savedMovies, onSaveMovie, onDelete }) {
         message={messageSearch}
         isChecked={isChecked}
         setIsChecked={setIsChecked}
+        isCheckboxDisabled={isCheckboxDisabled}
       />
       {
         isLoading
