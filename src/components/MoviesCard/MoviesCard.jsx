@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getHoursAndMinutes } from '../../utils/utils';
@@ -8,22 +9,13 @@ export default function MoviesCard({
   movie, isSavedMovies, onDelete, onSaveMovie, movieSavedId,
 }) {
   const { pathname } = useLocation();
-  const [isSaved, setIsSaved] = useState(false);
-
-  useEffect(() => {
-    if (movieSavedId) {
-      setIsSaved(true);
-    }
-  }, [movieSavedId]);
 
   function handleSaveMovieClick() {
     onSaveMovie(movie);
-    setIsSaved(true);
   }
 
   function handleDeleteMovieClick() {
     onDelete(pathname === '/movies' ? movieSavedId : movie);
-    setIsSaved(false);
   }
 
   return (
@@ -38,10 +30,10 @@ export default function MoviesCard({
             ? <button className='element__delete-button' aria-label='Delete' type='button' onClick={handleDeleteMovieClick} />
             : (
               <button
-                className={`element__save-button ${isSaved && 'element__save-button_is_active'}`}
+                className={`element__save-button ${movieSavedId && 'element__save-button_is_active'}`}
                 aria-label='Save'
                 type='button'
-                onClick={isSaved ? handleDeleteMovieClick : handleSaveMovieClick}
+                onClick={movieSavedId ? handleDeleteMovieClick : handleSaveMovieClick}
               />
             )
         }
