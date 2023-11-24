@@ -45,13 +45,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getAddedToSavedMovies()
-      .then((data) => {
-        setSavedMovies(data);
-      })
-      .catch((err) => {
-        console.error(`Произошла ошибка: ${err}`);
-      });
+    if (isLoggedIn) {
+      getAddedToSavedMovies()
+        .then((data) => {
+          setSavedMovies(data);
+        })
+        .catch((err) => {
+          console.error(`Произошла ошибка: ${err}`);
+        });
+    }
   }, [isLoggedIn]);
 
   function handleSaveMovie(movie) {
