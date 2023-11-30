@@ -1,9 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthFormInput from '../AuthFormInput/AuthFormInput';
+import useFormValidator from '../../hooks/useFormValidator';
+import { register, login } from '../../utils/MainApi';
+import {
+  BAD_REQUEST_CODE,
+  CONFLICT_CODE,
+  ERROR_CONFLICT,
+  ERROR_SERVER_REGISTER,
+  ERROR_BAD_REQUEST_SERVER,
+} from '../../utils/constants';
 import './Register.css';
 
-export default function Register() {
+export default function Register({ setIsLoggedIn, setCurrentUser }) {
+  const {
+    values,
+    formRegisterValidityStatus,
+    emailValue,
+    nameValue,
+    passwordValue,
+    errors,
+    handleEmailInputChange,
+    handleNameInputChange,
+    handlePasswordInputChange,
+  } = useFormValidator();
+
+  const navigate = useNavigate();
+
+  const [isDisabledInputs, setIsDisabledInputs] = useState(false);
+  const [isSubmitButtonDisable, setIsSubmitButtonDisable] = useState(false);
+  const [isResponseRegister, setIsResponseRegister] = useState(''); // ошибки от сервера
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    setIsDisabledInputs(true);
+    setIsSubmitButtonDisable(true);
+    setIsResponseRegister('');
+    register(values)
+      .then(() => {
+        setIsResponseRegister('');
+        const { email, name, password } = values;
+        login({ email, password })
+          .then(() => {
+            setIsLoggedIn(true);
+            setCurrentUser({ email, name });
+            navigate('/movies', { replace: true });
+          })
+          .catch((err) => {
+            console.error(`Произошла ошибка: ${err}`);
+            return setIsResponseRegister(ERROR_SERVER_REGISTER);
+          });
+      })
+      .catch((err) => {
+        console.error(`Произошла ошибка: ${err}`);
+        setIsDisabledInputs(false);
+        setIsSubmitButtonDisable(false);
+        if (err === CONFLICT_CODE) {
+          return setIsResponseRegister(ERROR_CONFLICT);
+        }
+        if (err === BAD_REQUEST_CODE) {
+          return setIsResponseRegister(ERROR_BAD_REQUEST_SERVER);
+        }
+        return setIsResponseRegister(ERROR_SERVER_REGISTER);
+      });
+  }
+
   return (
     <main className='main'>
       <AuthForm
@@ -12,29 +74,45 @@ export default function Register() {
         redirectQuestion='Уже зарегистрированы?'
         linkPath='/signin'
         linkTitle='Войти'
+        isValid={formRegisterValidityStatus}
+        onSubmit={handleSubmit}
+        setIsLoggedIn={setIsLoggedIn}
+        isDisabled={isSubmitButtonDisable}
+        isResponse={isResponseRegister}
       >
         <AuthFormInput
           labelText='Имя'
           type='text'
+          value={nameValue ?? ''}
           placeholder='Имя'
           name='name'
           minLength={2}
           maxLength={30}
+          isDisabled={isDisabledInputs}
+          onChange={handleNameInputChange}
+          errorText={errors.name}
         />
         <AuthFormInput
           labelText='E-mail'
-          type='email'
+          value={emailValue ?? ''}
           placeholder='Email'
           name='email'
+          type='email'
+          onChange={handleEmailInputChange}
+          isDisabled={isDisabledInputs}
+          errorText={errors.email}
         />
         <AuthFormInput
           labelText='Пароль'
           type='password'
+          value={passwordValue ?? ''}
           placeholder='Пароль'
           name='password'
-          errorText='Что-то пошло не так...'
           minLength={6}
           maxLength={30}
+          onChange={handlePasswordInputChange}
+          isDisabled={isDisabledInputs}
+          errorText={errors.password}
         />
       </AuthForm>
     </main>

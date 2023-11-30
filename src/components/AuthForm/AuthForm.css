@@ -38,6 +38,7 @@
 
 .auth__form {
     padding-top: 40px;
+    min-height: 379px;
 }
 
 .auth__form-list {
@@ -46,7 +47,7 @@
     display: flex;
     flex-direction: column;
     min-height: 200px;
-    padding-bottom: 87px;
+    padding-bottom: 93px;
 }
 
 .auth__button {
@@ -70,6 +71,16 @@
     opacity: .8;
 }
 
+.auth__button_is_valid {
+    background-color: #F8F8F8;
+    color: #C2C2C2;
+    pointer-events: none;
+}
+
+.auth__button_is_valid:hover {
+    opacity: 1;
+}
+
 .auth__error {
     display: block;
     color: #FF004C;
@@ -77,7 +88,7 @@
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
-    min-height: 28px;
+    min-height: 14px;
 }
 
 .auth__redirect-container {
@@ -138,7 +149,7 @@
 
 @media screen and (max-width: 620px) {
     .auth__form-list {
-        padding-bottom: 174px;
+        padding-bottom: 176px;
     }
 }
 

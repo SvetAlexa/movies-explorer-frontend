@@ -64,6 +64,15 @@
                 "allowFunctions": true,
                 "allowBind": true
             }
+        ],
+        "consistent-return": [
+            0,
+            {
+                "treatUndefinedAsUnspecified": false
+            }
+        ],
+        "no-underscore-dangle": [
+            0
         ]
     }
 }

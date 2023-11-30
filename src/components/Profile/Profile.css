@@ -28,7 +28,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    padding-bottom: 186px;
+    padding-bottom: 136px;
     min-height: 86px;
 }
 
@@ -37,7 +37,6 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
-    margin-bottom: 5px;
 }
 
 .profile__form-label {
@@ -83,16 +82,69 @@
 }
 
 .profile__form-error {
+    display: flex;
+    align-items: center;
+    color: #EE3465;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    min-height: 12px;
+    height: 17px;
 }
 
 .profile__form-button {
+    border: none;
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px 126px 15px 124px;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #fff;
+    border-radius: 3px;
+    background-color: #3456F3;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.profile__form-button:hover {
+    opacity: .8;
+}
+
+.profile__form-button_is_disabled {
+    background-color: #F8F8F8;
+    color: #C2C2C2;
+    pointer-events: none;
+}
+
+.profile__status-error {
     display: block;
+    color: #FF004C;
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    min-height: 14px;
+}
+
+.profile__status-ok {
+    display: block;
+    color: #2BE080;
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    padding-bottom: 20px;
+    min-height: 14px;
+}
+
+.profile__edit-button {
+    display: block;
+    margin: 0 auto;
     padding: 0;
+    padding-bottom: 16px;
     border: none;
     background-color: inherit;
     color: #FFF;
@@ -101,12 +153,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin: 0 auto;
     cursor: pointer;
     transition: .3s ease-in-out;
 }
 
-.profile__form-button:hover {
+.profile__edit-button:hover {
     opacity: .7;
 }
 
@@ -169,13 +220,13 @@
 
 @media screen and (max-width: 880px) {
     .profile__form-list {
-        padding-bottom: 176px;
+        padding-bottom: 126px;
     }
 }
 
 @media screen and (max-width: 620px) {
     .profile__form-list {
-        padding-bottom: 345px;
+        padding-bottom: 295px;
     }
 }
 
@@ -186,7 +237,26 @@
 }
 
 @media screen and (max-width: 620px) {
+    .profile__form-error {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 880px) {
     .profile__form-button {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .profile__form-button {
+        font-size: 12px;
+        padding: 15px 67px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .profile__edit-button {
         font-size: 12px;
     }
 }

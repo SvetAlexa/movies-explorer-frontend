@@ -2,11 +2,6 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    padding-bottom: 7px;
-}
-
-.auth__input-item:last-of-type {
-    padding-bottom: 0;
 }
 
 .auth__input-label {
@@ -23,7 +18,7 @@
     background-color: inherit;
     color: #fff;
     padding: 0;
-    padding-bottom: 10px;
+    padding-bottom: 11px;
     box-sizing: border-box;
     border: none;
     border-bottom: 1px solid #424242;
@@ -43,12 +38,12 @@
 }
 
 .error {
-    display: block;
+    display: flex;
+    align-items: center;
     color: #EE3465;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    min-height: 12px;
-    padding-top: 6px;
+    min-height: 24px;
 }

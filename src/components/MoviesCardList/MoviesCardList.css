@@ -10,6 +10,15 @@
     padding-bottom: 100px;
 }
 
+.movies-elements__error {
+    margin: 0;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+}
+
 .movies-elements__list {
     max-width: 1140px;
     margin: 0 auto;
@@ -52,6 +61,6 @@
 
 @media screen and (max-width: 880px) {
     .movies-elements_place_saved-movies {
-     padding-bottom: 10px;
+        padding-bottom: 10px;
     }
 }
