@@ -1,5 +1,5 @@
-// const BASE_URL = 'https://api.movies-diploma.nomoredomainsrocks.ru';
-const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'https://api.movies-diploma.nomoredomainsrocks.ru';
+// const BASE_URL = 'http://127.0.0.1:3000';
 const BASE_MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 const MOVIE_IMAGE_URL = 'https://api.nomoreparties.co';
 

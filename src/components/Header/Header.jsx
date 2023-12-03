@@ -9,7 +9,6 @@ export default function Header({
   isLanding,
   isLoggedIn,
   isBurgerMenuOpen,
-  onClose,
   onMenuButtonCloseClick,
   onMenuButtonOpenClick,
 }) {
@@ -23,7 +22,6 @@ export default function Header({
             <Navigation
               isLanding={isLanding}
               isBurgerMenuOpen={isBurgerMenuOpen}
-              onClose={onClose}
               onMenuButtonCloseClick={onMenuButtonCloseClick}
               onMenuButtonOpenClick={onMenuButtonOpenClick}
             />

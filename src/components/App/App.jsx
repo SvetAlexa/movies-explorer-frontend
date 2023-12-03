@@ -100,7 +100,7 @@ function App() {
                     <Header
                       isLanding
                       isLoggedIn={isLoggedIn}
-                      onClose={handleBurgerMenuClose}
+                      isBurgerMenuOpen={isBurgerMenuOpen}
                       onMenuButtonCloseClick={handleBurgerMenuClose}
                       onMenuButtonOpenClick={handleBurgerMenuOpen}
                     />
