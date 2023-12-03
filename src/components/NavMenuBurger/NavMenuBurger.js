@@ -6,19 +6,18 @@ export default function NavMenuBurger({
   onMenuButtonCloseClick, isBurgerMenuOpen,
 }) {
   useEffect(() => {
-    if (isBurgerMenuOpen) {
-      // объявляем внутри `useEffect` функцию, чтобы она не теряла ссылку при перерисовке компонента
-      const closeByEscape = (evt) => {
-        if (evt.key === 'Escape') {
-          onMenuButtonCloseClick();
-        }
-      };
-      console.log(isBurgerMenuOpen);
+    if (!isBurgerMenuOpen) return;
 
-      document.addEventListener('keydown', closeByEscape);
+    // объявляем внутри `useEffect` функцию, чтобы она не теряла ссылку при перерисовке компонента
+    const closeByEscape = (evt) => {
+      if (evt.key === 'Escape') {
+        onMenuButtonCloseClick();
+      }
+    };
 
-      return () => document.removeEventListener('keydown', closeByEscape);
-    }
+    document.addEventListener('keydown', closeByEscape);
+
+    return () => document.removeEventListener('keydown', closeByEscape);
   }, [isBurgerMenuOpen, onMenuButtonCloseClick]);
 
   function handleOverlay(evt) {
@@ -26,8 +25,6 @@ export default function NavMenuBurger({
       onMenuButtonCloseClick();
     }
   }
-
-  console.log(isBurgerMenuOpen);
 
   return (
     <div className={`nav-menu ${isBurgerMenuOpen ? 'nav-menu_is_opened' : ''}`} onClick={handleOverlay} aria-hidden>
