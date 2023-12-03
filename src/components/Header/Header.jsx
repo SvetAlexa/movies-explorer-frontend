@@ -6,7 +6,12 @@ import Logo from '../../images/logo.svg';
 import './Header.css';
 
 export default function Header({
-  isLanding, isLoggedIn, isBurgerMenuOpen, onMenuButtonCloseClick, onMenuButtonOpenClick,
+  isLanding,
+  isLoggedIn,
+  isBurgerMenuOpen,
+  onClose,
+  onMenuButtonCloseClick,
+  onMenuButtonOpenClick,
 }) {
   return (
     <header className={`header ${isLanding ? 'header_landing' : ''}`}>
@@ -18,6 +23,7 @@ export default function Header({
             <Navigation
               isLanding={isLanding}
               isBurgerMenuOpen={isBurgerMenuOpen}
+              onClose={onClose}
               onMenuButtonCloseClick={onMenuButtonCloseClick}
               onMenuButtonOpenClick={onMenuButtonOpenClick}
             />

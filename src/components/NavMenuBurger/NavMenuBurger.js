@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavMenuBurger.css';
 
-export default function NavMenuBurger({ onMenuButtonCloseClick, isBurgerMenuOpen }) {
+export default function NavMenuBurger({
+  onMenuButtonCloseClick, isBurgerMenuOpen,
+}) {
+  useEffect(() => {
+    if (!isBurgerMenuOpen) return;
+
+    // объявляем внутри `useEffect` функцию, чтобы она не теряла ссылку при перерисовке компонента
+    const closeByEscape = (evt) => {
+      if (evt.key === 'Escape') {
+        onMenuButtonCloseClick();
+      }
+    };
+
+    document.addEventListener('keydown', closeByEscape);
+
+    return () => document.removeEventListener('keydown', closeByEscape); // удаляем обработчик в `clean-up` функции
+  }, [isBurgerMenuOpen, onMenuButtonCloseClick]);
+
+  function handleOverlay(evt) {
+    if (evt.target === evt.currentTarget) {
+      onMenuButtonCloseClick();
+    }
+  }
+
   return (
-    <div className={`nav-menu ${isBurgerMenuOpen ? 'nav-menu_is_opened' : ''}`}>
+    <div className={`nav-menu ${isBurgerMenuOpen ? 'nav-menu_is_opened' : ''}`} onClick={handleOverlay} aria-hidden>
       <div className='nav-menu__container'>
         <button className='nav-menu__close-button' type='button' aria-label='Close' onClick={onMenuButtonCloseClick} />
         <nav className='nav-menu__links'>
