@@ -66,7 +66,7 @@ export default function MoviesCardList({
         {pathname === '/movies'
           && (
             <>
-              <section className={`movies-elements ${!(movies.length > moviesQuantity) || isSavedMovies ? 'movies-elements_place_saved-movies' : ''}`}>
+              <section className={`movies-elements ${!(movies.length > moviesQuantity) ? 'movies-elements_place_saved-movies' : ''}`}>
                 <ul className='movies-elements__list'>
                   {movies.slice(0, moviesQuantity).map((item) => {
                     let movieSavedId;
@@ -95,7 +95,7 @@ export default function MoviesCardList({
           )}
         {pathname === '/saved-movies'
           && (
-            <section className={`movies-elements ${isSavedMovies ? 'movies-elements_place_saved-movies' : ''}`}>
+            <section className='movies-elements movies-elements_place_saved-movies'>
               <ul className='movies-elements__list'>
                 {movies?.map((item) => (
                   <MoviesCard
