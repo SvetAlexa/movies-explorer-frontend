@@ -26,14 +26,6 @@ export default function SavedMovies({ savedMovies, onDelete }) {
     const resultsFilteredFilms = getFilteredMovies(savedMovies, valueInput);
     setSearchedSavedMovies(resultsFilteredFilms);
     if (isChecked) {
-      const resultsFilteredFilmsWithCheckbox = getShortsFilteredMovies(savedMovies);
-      setSearchedSavedMovies(resultsFilteredFilmsWithCheckbox);
-      if (resultsFilteredFilmsWithCheckbox.length === 0) {
-        setIsSearchError(true);
-        setSearchErrorMessage(INVALID_SEARCH_NOT_FOUND);
-      }
-    }
-    if (isChecked && resultsFilteredFilms) {
       const resultsFilteredFilmsWithCheckbox = getShortsFilteredMovies(resultsFilteredFilms);
       setSearchedSavedMovies(resultsFilteredFilmsWithCheckbox);
       if (resultsFilteredFilmsWithCheckbox.length === 0) {
